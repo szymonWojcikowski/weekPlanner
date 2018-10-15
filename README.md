@@ -1,2 +1,3 @@
 # weekPlanner
-Week Planner
+Week Planner - Work in progress
+JS + SCSS + HTML5
