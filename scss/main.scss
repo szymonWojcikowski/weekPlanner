@@ -1,0 +1,22 @@
+@import 'partials/reset';
+
+$colorPrimary: rgba(188, 231, 132, 1);
+$colorLight: rgba(243, 232, 238, 1);
+$colorContrast: rgba(52, 138, 167, 1);
+$colorFont: rgba(34, 34, 34, 1);
+$colorBorder: rgba(71, 91, 99, 1);
+
+body {
+    background-color: $colorLight;
+}
+
+header {
+    background-color: $colorPrimary;
+    color: $colorFont;
+    border-bottom: 4px dashed $colorBorder;
+}
+footer {
+    background-color: $colorFont;
+    color: $colorLight;
+    border-top: 4px dashed $colorBorder;
+}
