@@ -6,17 +6,98 @@ $colorContrast: rgba(52, 138, 167, 1);
 $colorFont: rgba(34, 34, 34, 1);
 $colorBorder: rgba(71, 91, 99, 1);
 
+$tablet-width: 768px;
+$desktop-width: 1024px;
+
+@mixin tablet {
+  @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-width}) {
+    @content;
+  }
+}
+
 body {
     background-color: $colorLight;
+    height: 100vh;
+    overflow: hidden;
+    font-size: 10px;
+    font-family: 'Bangers', cursive;
+    letter-spacing: 1.2rem;
 }
 
 header {
     background-color: $colorPrimary;
-    color: $colorFont;
+    
     border-bottom: 4px dashed $colorBorder;
+    height: 10vh;
+    h1 {
+        text-align: center;
+        line-height: 10vh;
+        font-size: 3rem;
+        letter-spacing: 2rem;
+        color: $colorContrast;
+    }
 }
+
+section.week {
+    height: 80vh;
+    display: flex;
+    input {
+        padding: 1rem;
+        border: 2px outset $colorBorder;
+        &::placeholder {
+            font-family: 'Bangers', cursive;
+            font-weight: 100;
+        }
+    }
+    .day {
+        width: 100%;
+        @include tablet {
+            width: calc(100vw / 7);
+        }
+        @include desktop {
+            width: calc(100vw / 7);
+        }
+        height: 80vh;
+        border-right: 4px dotted $colorBorder;
+        li {
+            height: 4vh;
+            border-bottom: 2px dotted $colorBorder;
+            background-color: $colorContrast;
+            h1 {
+                width: calc(100% - 8.2vh);
+                float: left;
+                box-sizing: border-box;
+                padding: 0.5vh 1vh 0.5vh;
+                line-height: 1.5vh;
+                letter-spacing: 0.8rem;
+            }
+            button {
+                font-family: 'Bangers', cursive;
+                float: right;
+                height: 4vh;
+                width: 4vh;
+            }
+        }
+        .done {
+            background-color: $colorPrimary;
+        }
+    }
+}
+
 footer {
     background-color: $colorFont;
     color: $colorLight;
     border-top: 4px dashed $colorBorder;
+    height: 10vh;
+    p {
+        line-height: 5vh;
+        font-size: 1.5rem;
+        letter-spacing: 1.2rem;
+    }
 }

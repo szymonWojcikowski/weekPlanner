@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <title>CodersLab</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers">
     <link rel="stylesheet" href="css/main.css">
     <script src="js/app.js"></script>
 </head>
@@ -11,15 +12,16 @@
         <h1>Week Planner</h1>
     </header>
     <section class="week" data-week-nr>
+
+
+
+    <ul id="taskList" class="day">
         <input id="taskInput" placeholder="Place your task here"><br>
-    <input id="priorityInput" placeholder="Place task priority here"><br>
-    <button id="addTaskButton">Add task</button>
+        <input id="priorityInput" placeholder="Place task priority here"><br>
+        <button id="addTaskButton">Add task</button>
 
 
-    Tasks to finish: <span id="counter"></span>
-
-
-    <ul id="taskList">
+        Tasks: <span id="counter">0</span>
         <!--<li>
             <h1>Task 1</h1>
             <button>Delete</button>
@@ -31,11 +33,17 @@
             <button>Complete</button>
         </li>-->
     </ul>
+    <ul class="day"></ul>
+    <ul class="day"></ul>
+    <ul class="day"></ul>
+    <ul class="day"></ul>
+    <ul class="day"></ul>
+    <ul class="day"></ul>
 
-    <button id="removeFinishedTasksButton">Remove finished tasks</button>
+    
     </section>
     <footer>
-        <p>&copy;Copyright 2018</p>
+        <p>&copy;Copyright 2018 initial configuration</p><button id="removeFinishedTasksButton">Remove finished tasks</button>
     </footer>
 </body>
 </html>

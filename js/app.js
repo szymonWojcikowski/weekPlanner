@@ -29,7 +29,7 @@ document.addEventListener("DOMContentLoaded", function () {
             let nextTaskId = taskListSorted(taskList)[i].id;
             let taskToAdd = document.createElement("li");
             taskToAdd.dataset.id = nextTaskId;
-            taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>Delete</button><button>Complete</button>`;
+            taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
             taskListContainer.appendChild(taskToAdd);
             buttonsInAddedTask();
         }
