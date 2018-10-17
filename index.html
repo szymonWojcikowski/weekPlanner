@@ -15,9 +15,9 @@
         <input id="timeInput" placeholder="Place time for task"><br>
         <select name="daySelect" id="daySelect">
             <option value="1">Monday</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">Thusday</option>
+            <option value="2">Tuesday</option>
+            <option value="3">Wednesday</option>
+            <option value="4">Thursday</option>
             <option value="5">Friday</option>
             <option value="6">Saturday</option>
             <option value="7">Sunday</option>
@@ -27,11 +27,11 @@
     
     
     
-    <section class="week" data-week-nr>
+    <section class="week" data-week-nr="1">
 
     <ul id="taskList" class="day">
 
-        Tasks: <span id="counter">0</span>
+
         <!--<li>
             <h1>Task 1</h1>
             <button>Delete</button>
@@ -53,7 +53,10 @@
     
     </section>
     <footer>
-        <p>&copy;Copyright 2018 initial configuration</p><button id="removeFinishedTasksButton">Remove finished tasks</button>
+        <p>&copy;Copyright 2018 initial configuration</p>
+        <span>Tasks:</span>
+        <span id="counter">0</span>
+        <button id="removeFinishedTasksButton">Remove finished tasks</button>
     </footer>
 </body>
 </html>
