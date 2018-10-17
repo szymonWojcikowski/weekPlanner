@@ -10,16 +10,26 @@
 <body>
     <header>
         <h1>Week Planner</h1>
-    </header>
-    <section class="week" data-week-nr>
-
-
-
-    <ul id="taskList" class="day">
         <input id="taskInput" placeholder="Place your task here"><br>
         <input id="priorityInput" placeholder="Place task priority here"><br>
+        <input id="timeInput" placeholder="Place time for task"><br>
+        <select name="daySelect" id="daySelect">
+            <option value="1">Monday</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+            <option value="4">Thusday</option>
+            <option value="5">Friday</option>
+            <option value="6">Saturday</option>
+            <option value="7">Sunday</option>
+        </select>
         <button id="addTaskButton">Add task</button>
+    </header>
+    
+    
+    
+    <section class="week" data-week-nr>
 
+    <ul id="taskList" class="day">
 
         Tasks: <span id="counter">0</span>
         <!--<li>

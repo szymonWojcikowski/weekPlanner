@@ -1,6 +1,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
     const priorityInput = document.getElementById("priorityInput");
+    const daySelect = document.getElementById("daySelect");//new
+    const timeInput = document.getElementById("timeInput");//new
     const taskListContainer = document.getElementById("taskList");
     const addBtn = document.getElementById("addTaskButton");
     const removeFinishedTasksBtn = document.getElementById("removeFinishedTasksButton");
@@ -10,10 +12,13 @@ document.addEventListener("DOMContentLoaded", function () {
     let idCounter = 0;
 
 
-    const Task = function (task, priority, id) {
+    const Task = function (task, priority, id, day, task) {
         this.priority = priority;
         this.task = task;
         this.id = id;
+        //-------
+        this.day = day;
+        this.time = time;
     };
 
     const taskListSorted = function (taskList) {
@@ -94,7 +99,7 @@ document.addEventListener("DOMContentLoaded", function () {
     addBtn.addEventListener("click", function () {
         if (taskInput.value.length > 5 && taskInput.value.length < 100) {
             if (Number.isInteger(parseInt(priorityInput.value)) && parseInt(priorityInput.value) >= 1 && parseInt(priorityInput.value) <= 10) {
-                taskList.push(new Task(taskInput.value, priorityInput.value, idCounter));
+                taskList.push(new Task(taskInput.value, priorityInput.value, idCounter, daySelect.options.selectedValue, dayInput));//new args 4 & 5
                 idCounter++;
                 taskListRefresh();
                 TaskCounterRefresh();
