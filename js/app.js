@@ -37,7 +37,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskToAdd.dataset.id = nextTaskId;
                 taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
                 taskListContainer[dayNr].appendChild(taskToAdd);
-                buttonsInAddedTask(dayNr);
+                buttonsInAddedTask();
             }
         }
         console.log(taskList);
@@ -50,17 +50,18 @@ document.addEventListener("DOMContentLoaded", function () {
     const inputsRefresh = function () {
         taskInput.value = "";
         priorityInput.value = "";
+        timeInput.value = "";
     };
 
-    const buttonsInAddedTask = function (dayNr) {
-        const getButtons = taskListContainer[dayNr].querySelectorAll("li>button");
+    const buttonsInAddedTask = function () {
+        const getButtons = taskListContainer[dayNr].querySelectorAll("li>button"); //dayNr undefined
 
         for (let i = 0; i < getButtons.length; i++) {
             getButtons[i].addEventListener("click", function () {
                 let taskToDelete = [];
-                taskToDelete.push(parseInt(this.parentElement.dataset.id));
+                taskToDelete.push(parseInt(this.parentElement.dataset.id));// po ym można szukać argumentu dla tasklistRefresh (odpowiednika taskList.day)
                 deleteTaskObjFromTab(taskToDelete);
-                taskListRefresh();//arg all?
+                taskListRefresh(this.parentElement.parentElement.dataset.day);//arg all?
                 TaskCounterRefresh();
             });
             i++;

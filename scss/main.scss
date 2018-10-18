@@ -67,20 +67,22 @@ section.week {
         height: 80vh;
         border-right: 4px dotted $colorBorder;
         li {
+            display: flex;
             height: 4vh;
             border-bottom: 2px dotted $colorBorder;
             background-color: $colorContrast;
             h1 {
                 width: calc(100% - 8.2vh);
-                float: left;
+                height: calc(100% / 12);
+                overflow: hidden;
                 box-sizing: border-box;
                 padding: 0.5vh 1vh 0.5vh;
                 line-height: 1.5vh;
                 letter-spacing: 0.8rem;
             }
             button {
+                align-self:flex-end;
                 font-family: 'Bangers', cursive;
-                float: right;
                 height: 4vh;
                 width: 4vh;
             }
