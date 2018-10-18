@@ -28,7 +28,18 @@ document.addEventListener("DOMContentLoaded", function () {
     };
 
     const taskListRefresh = function (dayNr) {
-        taskListContainer[dayNr].innerHTML = "";
+        console.log(dayNr, typeof dayNr);
+        if (Array.isArray(dayNr)) {
+            console.log("tablica");
+            for (let i = 0; i < dayNr.length; i++) {
+                console.log(i, dayNr, dayNr.length, taskListContainer[i]);
+                taskListContainer[i].innerHTML = "";
+            }
+        }
+        else {
+            console.log("var");
+            taskListContainer[dayNr].innerHTML = "";
+        }
         for (let i = 0; i < taskListSorted(taskList).length; i++) {
             let nextTask = taskListSorted(taskList)[i].task;
             let nextTaskId = taskListSorted(taskList)[i].id;
@@ -37,7 +48,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskToAdd.dataset.id = nextTaskId;
                 taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
                 taskListContainer[dayNr].appendChild(taskToAdd);
-                buttonsInAddedTask();
+                buttonsInAddedTask(dayNr);
             }
         }
         console.log(taskList);
@@ -53,14 +64,15 @@ document.addEventListener("DOMContentLoaded", function () {
         timeInput.value = "";
     };
 
-    const buttonsInAddedTask = function () {
+    const buttonsInAddedTask = function (dayNr) {
         const getButtons = taskListContainer[dayNr].querySelectorAll("li>button"); //dayNr undefined
 
         for (let i = 0; i < getButtons.length; i++) {
             getButtons[i].addEventListener("click", function () {
                 let taskToDelete = [];
-                taskToDelete.push(parseInt(this.parentElement.dataset.id));// po ym można szukać argumentu dla tasklistRefresh (odpowiednika taskList.day)
+                taskToDelete.push(parseInt(this.parentElement.dataset.id));// po tym można szukać argumentu dla tasklistRefresh (odpowiednika taskList.day)
                 deleteTaskObjFromTab(taskToDelete);
+                console.log(this);
                 taskListRefresh(this.parentElement.parentElement.dataset.day);//arg all?
                 TaskCounterRefresh();
             });
@@ -80,10 +92,29 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return doneTaskId;
     };
+//------------przygotowanie tablicy dni-------------------
+    const daysToRefresh = function (doneTaskId) {
+        let daysToRefreshTab = [];
+        console.log("argumenty", doneTaskId);
+        for (let i = 0; i < doneTaskId.length; i++) {
+            for (let j = 0; j < taskList.length; j++) {
+                console.log("in days ", doneTaskId[i], taskList[j].id);
+                if (doneTaskId[i] == taskList[j].id) {
+                    console.log("iv", taskList[j].day);
+                    daysToRefreshTab.push(taskList[j].day);
+                }
+            }
+            //daysToRefreshTab.push(taskList[i].find(el => el.day));
+            console.log(daysToRefreshTab);
+        }
+        return daysToRefreshTab;
+    };
 
-    removeFinishedTasksBtn.addEventListener("click", function () {
+
+//----------------------------------------
+    removeFinishedTasksBtn.addEventListener("click", function (daysToRefreshTab) {
         deleteTaskObjFromTab(doneTaskTabPreparation());
-        taskListRefresh();
+        taskListRefresh(daysToRefresh(doneTaskTabPreparation()));
         TaskCounterRefresh();
     });
 

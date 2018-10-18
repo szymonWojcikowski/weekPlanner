@@ -69,11 +69,11 @@ section.week {
         li {
             display: flex;
             height: 4vh;
+            height: calc(100% / 12);
             border-bottom: 2px dotted $colorBorder;
             background-color: $colorContrast;
             h1 {
                 width: calc(100% - 8.2vh);
-                height: calc(100% / 12);
                 overflow: hidden;
                 box-sizing: border-box;
                 padding: 0.5vh 1vh 0.5vh;
