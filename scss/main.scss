@@ -31,22 +31,18 @@ body {
 }
 
 header {
+    display: flex;
     background-color: $colorPrimary;
-    
     border-bottom: 4px dashed $colorBorder;
     height: 10vh;
     h1 {
+        width: 40%;
         text-align: center;
         line-height: 10vh;
         font-size: 3rem;
         letter-spacing: 2rem;
         color: $colorContrast;
     }
-}
-
-section.week {
-    height: 80vh;
-    display: flex;
     input {
         padding: 1rem;
         border: 2px outset $colorBorder;
@@ -55,6 +51,11 @@ section.week {
             font-weight: 100;
         }
     }
+}
+
+section.week {
+    height: 80vh;
+    display: flex;
     .day {
         width: 100%;
         @include tablet {

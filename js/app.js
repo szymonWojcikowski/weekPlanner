@@ -1,9 +1,9 @@
 document.addEventListener("DOMContentLoaded", function () {
     const taskInput = document.getElementById("taskInput");
     const priorityInput = document.getElementById("priorityInput");
-    const daySelect = document.getElementById("daySelect");//new
+    let daySelect = document.getElementById("daySelect");//new
     const timeInput = document.getElementById("timeInput");//new
-    const taskListContainer = document.getElementById("taskList");
+    const taskListContainer = document.getElementsByClassName("day");
     const addBtn = document.getElementById("addTaskButton");
     const removeFinishedTasksBtn = document.getElementById("removeFinishedTasksButton");
     const taskToDoCounter = document.getElementById("counter");
@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let idCounter = 0;
 
 
-    const Task = function (task, priority, id, day, task) {
+    const Task = function (task, priority, id, day, time) {
         this.priority = priority;
         this.task = task;
         this.id = id;
@@ -27,16 +27,18 @@ document.addEventListener("DOMContentLoaded", function () {
         return sortedTaskTab;
     };
 
-    const taskListRefresh = function () {
-        taskListContainer.innerHTML = "";
+    const taskListRefresh = function (dayNr) {
+        taskListContainer[dayNr].innerHTML = "";
         for (let i = 0; i < taskListSorted(taskList).length; i++) {
             let nextTask = taskListSorted(taskList)[i].task;
             let nextTaskId = taskListSorted(taskList)[i].id;
-            let taskToAdd = document.createElement("li");
-            taskToAdd.dataset.id = nextTaskId;
-            taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
-            taskListContainer.appendChild(taskToAdd);
-            buttonsInAddedTask();
+            if (taskListSorted(taskList)[i].day === dayNr) {
+                let taskToAdd = document.createElement("li");
+                taskToAdd.dataset.id = nextTaskId;
+                taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
+                taskListContainer[dayNr].appendChild(taskToAdd);
+                buttonsInAddedTask(dayNr);
+            }
         }
         console.log(taskList);
     };
@@ -50,15 +52,15 @@ document.addEventListener("DOMContentLoaded", function () {
         priorityInput.value = "";
     };
 
-    const buttonsInAddedTask = function () {
-        const getButtons = taskListContainer.querySelectorAll("li>button");
+    const buttonsInAddedTask = function (dayNr) {
+        const getButtons = taskListContainer[dayNr].querySelectorAll("li>button");
 
         for (let i = 0; i < getButtons.length; i++) {
             getButtons[i].addEventListener("click", function () {
                 let taskToDelete = [];
                 taskToDelete.push(parseInt(this.parentElement.dataset.id));
                 deleteTaskObjFromTab(taskToDelete);
-                taskListRefresh();
+                taskListRefresh();//arg all?
                 TaskCounterRefresh();
             });
             i++;
@@ -99,9 +101,9 @@ document.addEventListener("DOMContentLoaded", function () {
     addBtn.addEventListener("click", function () {
         if (taskInput.value.length > 5 && taskInput.value.length < 100) {
             if (Number.isInteger(parseInt(priorityInput.value)) && parseInt(priorityInput.value) >= 1 && parseInt(priorityInput.value) <= 10) {
-                taskList.push(new Task(taskInput.value, priorityInput.value, idCounter, daySelect.options.selectedValue, dayInput));//new args 4 & 5
+                taskList.push(new Task(taskInput.value, priorityInput.value, idCounter, daySelect.options[daySelect.options.selectedIndex].value, timeInput.value));//new args 4 & 5
                 idCounter++;
-                taskListRefresh();
+                taskListRefresh(daySelect.options[daySelect.options.selectedIndex].value);
                 TaskCounterRefresh();
                 inputsRefresh();
             }
