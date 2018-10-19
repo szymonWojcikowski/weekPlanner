@@ -97,6 +97,7 @@ document.addEventListener("DOMContentLoaded", function () {
         let daysToRefreshTab = [];
         console.log("argumenty", doneTaskId);
         for (let i = 0; i < doneTaskId.length; i++) {
+            console.log("1 petla", taskList.length);
             for (let j = 0; j < taskList.length; j++) {
                 console.log("in days ", doneTaskId[i], taskList[j].id);
                 if (doneTaskId[i] == taskList[j].id) {
@@ -113,8 +114,9 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //----------------------------------------
     removeFinishedTasksBtn.addEventListener("click", function (daysToRefreshTab) {
+        let dToRefr = daysToRefresh(doneTaskTabPreparation());
         deleteTaskObjFromTab(doneTaskTabPreparation());
-        taskListRefresh(daysToRefresh(doneTaskTabPreparation()));
+        taskListRefresh(dToRefr);
         TaskCounterRefresh();
     });
 
