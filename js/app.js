@@ -27,19 +27,24 @@ document.addEventListener("DOMContentLoaded", function () {
         return sortedTaskTab;
     };
 
-    const taskListRefresh = function (dayNr) {
+    const clearList = function(dayNr) {
         console.log(dayNr, typeof dayNr);
         if (Array.isArray(dayNr)) {
             console.log("tablica");
             for (let i = 0; i < dayNr.length; i++) {
                 console.log(i, dayNr, dayNr.length, taskListContainer[i]);
-                taskListContainer[i].innerHTML = "";
+                if (taskListContainer[i].dataset.day == dayNr) {
+                   taskListContainer[i].innerHTML = ""; 
+                }   
             }
         }
         else {
             console.log("var");
             taskListContainer[dayNr].innerHTML = "";
         }
+    };
+
+    const printList = function(dayNr) {       
         for (let i = 0; i < taskListSorted(taskList).length; i++) {
             let nextTask = taskListSorted(taskList)[i].task;
             let nextTaskId = taskListSorted(taskList)[i].id;
@@ -51,8 +56,14 @@ document.addEventListener("DOMContentLoaded", function () {
                 buttonsInAddedTask(dayNr);
             }
         }
-        console.log(taskList);
+        console.log("print " + taskList);
     };
+    
+    const taskListRefresh = function(dayNr) {
+        clearList(dayNr);
+        printList(dayNr);
+    };
+
 
     const TaskCounterRefresh = function () {
         taskToDoCounter.innerText = taskList.length;
@@ -115,8 +126,9 @@ document.addEventListener("DOMContentLoaded", function () {
 //----------------------------------------
     removeFinishedTasksBtn.addEventListener("click", function (daysToRefreshTab) {
         let dToRefr = daysToRefresh(doneTaskTabPreparation());
-        deleteTaskObjFromTab(doneTaskTabPreparation());
+        //deleteTaskObjFromTab(doneTaskTabPreparation());
         taskListRefresh(dToRefr);
+        deleteTaskObjFromTab(doneTaskTabPreparation());
         TaskCounterRefresh();
     });
 
