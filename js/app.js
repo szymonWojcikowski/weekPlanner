@@ -11,7 +11,7 @@ document.addEventListener("DOMContentLoaded", function () {
     let taskList = [];
     let idCounter = 0;
 
-
+    //---konstruktor zadania
     const Task = function (task, priority, id, day, time) {
         this.priority = priority;
         this.task = task;
@@ -20,13 +20,13 @@ document.addEventListener("DOMContentLoaded", function () {
         this.day = day;
         this.time = time;
     };
-
+    //---tablica zadan posortowana po kluczu priorytetu
     const taskListSorted = function (taskList) {
         let sortedTaskTab = taskList.slice().sort( (a, b) => b.priority - a.priority);
         //powyżej użycie .slice() aby stworzyć kopię tablicy, inaczej sortowało również tablicę źródłową
         return sortedTaskTab;
     };
-
+    //---czyszczenie listy danego dnia
     const clearList = function(dayNr) {
         console.log(dayNr, typeof dayNr);
         if (Array.isArray(dayNr)) {
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", function () {
             taskListContainer[dayNr].innerHTML = "";
         }
     };
-
+    //---wypelnianie zadaniami danej listy
     const printList = function(dayNr) {       
         for (let i = 0; i < taskListSorted(taskList).length; i++) {
             let nextTask = taskListSorted(taskList)[i].task;
@@ -53,33 +53,35 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskToAdd.dataset.id = nextTaskId;
                 taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
                 taskListContainer[dayNr].appendChild(taskToAdd);
+                //odpalenie obslugi zdarzen dla wydrukowanych guzikow
                 buttonsInAddedTask(dayNr);
             }
         }
-        console.log("print " + taskList);
+        console.log("print " + taskList[dayNr]);
     };
-    
+    //---odswiezanie listy zadan z danego dnia
     const taskListRefresh = function(dayNr) {
         clearList(dayNr);
         printList(dayNr);
     };
 
-
+    //---odswiezanie licznika zadan
     const TaskCounterRefresh = function () {
         taskToDoCounter.innerText = taskList.length;
     };
-
+    //---czyszczenie inputow
     const inputsRefresh = function () {
         taskInput.value = "";
         priorityInput.value = "";
         timeInput.value = "";
     };
-
+    //---przyciski w zadaniach
     const buttonsInAddedTask = function (dayNr) {
         const getButtons = taskListContainer[dayNr].querySelectorAll("li>button"); //dayNr undefined
-
+        //---zdarzenia przyciskow
         for (let i = 0; i < getButtons.length; i++) {
             getButtons[i].addEventListener("click", function () {
+                //---klikniecie przycisku usuwania
                 let taskToDelete = [];
                 taskToDelete.push(parseInt(this.parentElement.dataset.id));// po tym można szukać argumentu dla tasklistRefresh (odpowiednika taskList.day)
                 deleteTaskObjFromTab(taskToDelete);
@@ -87,14 +89,15 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskListRefresh(this.parentElement.parentElement.dataset.day);//arg all?
                 TaskCounterRefresh();
             });
-            i++;
+            i++;//przjescie w petli do kolejnego przycisku
             getButtons[i].addEventListener("click", function (ev) {
+                //---zaznaczenie, ze zrobione
                 complete(this);
                 ev.stopImmediatePropagation();
             });
         }
     };
-
+    //---zebranie do tablicy id zrobionych zadan
     const doneTaskTabPreparation = function () {
         const doneTasks = document.getElementsByClassName("done");
         let doneTaskId = [];
@@ -103,7 +106,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return doneTaskId;
     };
-//------------przygotowanie tablicy dni-------------------
+    //------------przygotowanie tablicy dni do odswiezenia-------------------
     const daysToRefresh = function (doneTaskId) {
         let daysToRefreshTab = [];
         console.log("argumenty", doneTaskId);
@@ -121,9 +124,9 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return daysToRefreshTab;
     };
-
-
 //----------------------------------------
+
+    //---przycisk usuwania zrobionych zadan
     removeFinishedTasksBtn.addEventListener("click", function (daysToRefreshTab) {
         let dToRefr = daysToRefresh(doneTaskTabPreparation());
         //deleteTaskObjFromTab(doneTaskTabPreparation());
@@ -131,7 +134,7 @@ document.addEventListener("DOMContentLoaded", function () {
         deleteTaskObjFromTab(doneTaskTabPreparation());
         TaskCounterRefresh();
     });
-
+    //---usuniecie z tablicy obiektow zadan wg przekazanych id
     const deleteTaskObjFromTab = function (toCut) {
         taskList = taskList.filter(item => !toCut.includes(item.id));
     };
@@ -140,10 +143,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // można dodać plyfill do includes: https://tc39.github.io/ecma262/#sec-array.prototype.includes
     // polyifill do filter: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/filter#Polyfill
 
+    //---dodaje lub usuwa klase "done"
     const complete = function (context) {
         context.parentElement.classList.toggle("done");
     };
-
+    //---przycisk dodawania zadania
     addBtn.addEventListener("click", function () {
         if (taskInput.value.length > 5 && taskInput.value.length < 100) {
             if (Number.isInteger(parseInt(priorityInput.value)) && parseInt(priorityInput.value) >= 1 && parseInt(priorityInput.value) <= 10) {
