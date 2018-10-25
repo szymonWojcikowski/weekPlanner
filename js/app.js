@@ -30,12 +30,15 @@ document.addEventListener("DOMContentLoaded", function () {
     const clearList = function(dayNr) {
         console.log(dayNr, typeof dayNr);
         if (Array.isArray(dayNr)) {
-            console.log("tablica");
             for (let i = 0; i < dayNr.length; i++) {
-                console.log(i, dayNr, dayNr.length, taskListContainer[i]);
-                if (taskListContainer[i].dataset.day == dayNr) {
-                   taskListContainer[i].innerHTML = ""; 
-                }   
+                //console.log("petla nr" + i, "argument dayNr " + dayNr, "długość arg " + dayNr.length, "HTML danego taska " + taskListContainer[i]);
+                for (let k = 0; k < taskListContainer.length; k++) {
+                    if (taskListContainer[k].dataset.day == dayNr[i]) {
+                        taskListContainer[k].innerHTML = "";
+                        //console.log("w warunku czyszczącym");
+                    }
+                }
+
             }
         }
         else {
@@ -55,9 +58,21 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskListContainer[dayNr].appendChild(taskToAdd);
                 //odpalenie obslugi zdarzen dla wydrukowanych guzikow
                 buttonsInAddedTask(dayNr);
+                console.log("print this task: " + taskList[i]);
+            } else {
+                for (let j = 0; j < dayNr.length; j++) {
+                    if (taskListSorted(taskList)[i].day === dayNr[j]) {
+                        let taskToAdd = document.createElement("li");
+                        taskToAdd.dataset.id = nextTaskId;
+                        taskToAdd.innerHTML += `<h1>${nextTask}</h1><button>X</button><button>V</button>`;
+                        taskListContainer[dayNr[j]].appendChild(taskToAdd);
+                        //odpalenie obslugi zdarzen dla wydrukowanych guzikow
+                        buttonsInAddedTask(dayNr[j]);
+                        console.log("print this task: " + taskList[i]);
+                    }
+                }
             }
         }
-        console.log("print " + taskList[dayNr]);
     };
     //---odswiezanie listy zadan z danego dnia
     const taskListRefresh = function(dayNr) {
@@ -89,7 +104,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskListRefresh(this.parentElement.parentElement.dataset.day);//arg all?
                 TaskCounterRefresh();
             });
-            i++;//przjescie w petli do kolejnego przycisku
+            i++;//przejscie w petli do kolejnego przycisku
             getButtons[i].addEventListener("click", function (ev) {
                 //---zaznaczenie, ze zrobione
                 complete(this);
@@ -109,18 +124,18 @@ document.addEventListener("DOMContentLoaded", function () {
     //------------przygotowanie tablicy dni do odswiezenia-------------------
     const daysToRefresh = function (doneTaskId) {
         let daysToRefreshTab = [];
-        console.log("argumenty", doneTaskId);
+        //console.log("argumenty", doneTaskId);
         for (let i = 0; i < doneTaskId.length; i++) {
-            console.log("1 petla", taskList.length);
+            //console.log("1 petla", taskList.length);
             for (let j = 0; j < taskList.length; j++) {
-                console.log("in days ", doneTaskId[i], taskList[j].id);
+                //console.log("in days ", doneTaskId[i], taskList[j].id);
                 if (doneTaskId[i] == taskList[j].id) {
-                    console.log("iv", taskList[j].day);
+                    //console.log("iv", taskList[j].day);
                     daysToRefreshTab.push(taskList[j].day);
                 }
             }
             //daysToRefreshTab.push(taskList[i].find(el => el.day));
-            console.log(daysToRefreshTab);
+            //console.log(daysToRefreshTab);
         }
         return daysToRefreshTab;
     };
@@ -128,10 +143,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     //---przycisk usuwania zrobionych zadan
     removeFinishedTasksBtn.addEventListener("click", function (daysToRefreshTab) {
-        let dToRefr = daysToRefresh(doneTaskTabPreparation());
+        let doneTasks = doneTaskTabPreparation();
+        let dToRefr = daysToRefresh(doneTasks);
         //deleteTaskObjFromTab(doneTaskTabPreparation());
+        deleteTaskObjFromTab(doneTasks);
         taskListRefresh(dToRefr);
-        deleteTaskObjFromTab(doneTaskTabPreparation());
         TaskCounterRefresh();
     });
     //---usuniecie z tablicy obiektow zadan wg przekazanych id
@@ -165,4 +181,12 @@ document.addEventListener("DOMContentLoaded", function () {
             alert("Whooha! \n ProTip: Minimum 5 znaków, nie więcej niż 100.");
         }
     });
+
+    document.addEventListener("keyup", function (ev) {
+        if (ev.which === 84) { //t key
+            ev.preventDefault();
+            console.log(taskList);
+        }
+
+    })
 });
