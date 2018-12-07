@@ -5,9 +5,12 @@ $colorLight: rgba(243, 232, 238, 1);
 $colorContrast: rgba(52, 138, 167, 1);
 $colorFont: rgba(34, 34, 34, 1);
 $colorBorder: rgba(71, 91, 99, 1);
+$colorError: rgba(158, 43, 37, 1);
 
 $tablet-width: 768px;
 $desktop-width: 1024px;
+
+$hoursPerDay: 12;
 
 @mixin tablet {
   @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
@@ -21,6 +24,11 @@ $desktop-width: 1024px;
   }
 }
 
+* {
+    box-sizing: border-box;
+    font-family: 'Bangers', cursive;
+}
+
 body {
     background-color: $colorLight;
     height: 100vh;
@@ -30,6 +38,16 @@ body {
     letter-spacing: 1.2rem;
 }
 
+.btn {
+    min-height: 2rem;
+    min-width: 2rem;
+    border: 2px outset $colorBorder;
+    font-family: 'Bangers', cursive;
+    font-weight: 100;
+    background-color: transparent;
+    cursor: pointer;
+}
+
 header {
     display: flex;
     background-color: $colorPrimary;
@@ -37,19 +55,26 @@ header {
     height: 10vh;
     h1 {
         width: 40%;
-        text-align: center;
+        margin-left: 2rem;
         line-height: 10vh;
         font-size: 3rem;
-        letter-spacing: 2rem;
+        letter-spacing: 1rem;
         color: $colorContrast;
     }
     input {
+        flex: 0 1 12vw;
         padding: 1rem;
         border: 2px outset $colorBorder;
         &::placeholder {
             font-family: 'Bangers', cursive;
             font-weight: 100;
         }
+    }
+    .btn {
+        flex: 0 1 12vw;
+    }
+    #addTaskButton {
+        background-color: $colorError;
     }
 }
 
@@ -69,7 +94,8 @@ section.week {
         li {
             display: flex;
             height: 4vh;
-            height: calc(100% / 12);
+            height: calc(100% / $hoursPerDay);
+            box-sizing: border-box;
             border-bottom: 2px dotted $colorBorder;
             background-color: $colorContrast;
             h1 {
@@ -83,13 +109,28 @@ section.week {
             button {
                 align-self:flex-end;
                 font-family: 'Bangers', cursive;
+                min-height: 20px;
+                min-width: 20px;
                 height: 4vh;
                 width: 4vh;
+                text-align: center;
+                padding: 0;
+                .fas {
+                    display: inline;
+                    color: #FFF;
+                }
+            }
+            .btn.delete {
+                background-color: $colorBorder;
+            }
+            .btn.selected {
+                background-color: $colorError;
             }
         }
         .done {
             background-color: $colorPrimary;
         }
+
     }
 }
 
@@ -102,5 +143,8 @@ footer {
         line-height: 5vh;
         font-size: 1.5rem;
         letter-spacing: 1.2rem;
+    }
+    .btn {
+        background-color: $colorContrast;
     }
 }
