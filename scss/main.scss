@@ -10,7 +10,13 @@ $colorError: rgba(158, 43, 37, 1);
 $tablet-width: 768px;
 $desktop-width: 1024px;
 
+$days: 7;
 $hoursPerDay: 12;
+
+
+@mixin widthCalc($number, $days) {
+   width: calc(100vw / #{$days} * #{$number});
+}
 
 @mixin tablet {
   @media (min-width: #{$tablet-width}) and (max-width: #{$desktop-width - 1px}) {
@@ -24,6 +30,10 @@ $hoursPerDay: 12;
   }
 }
 
+html {
+    font-size: 10px;
+}
+
 * {
     box-sizing: border-box;
     font-family: 'Bangers', cursive;
@@ -33,7 +43,6 @@ body {
     background-color: $colorLight;
     height: 100vh;
     overflow: hidden;
-    font-size: 10px;
     font-family: 'Bangers', cursive;
     letter-spacing: 1.2rem;
 }
@@ -44,6 +53,8 @@ body {
     border: 2px outset $colorBorder;
     font-family: 'Bangers', cursive;
     font-weight: 100;
+    font-size: 1.5rem;
+    letter-spacing: 0.2rem;
     background-color: transparent;
     cursor: pointer;
 }
@@ -54,27 +65,36 @@ header {
     border-bottom: 4px dashed $colorBorder;
     height: 10vh;
     h1 {
-        width: 40%;
-        margin-left: 2rem;
+        @include widthCalc(2, $days);
+        padding-left: 2rem;
         line-height: 10vh;
         font-size: 3rem;
         letter-spacing: 1rem;
         color: $colorContrast;
     }
     input {
-        flex: 0 1 12vw;
-        padding: 1rem;
+        @include widthCalc(1, $days);
+        padding: 0 1rem;
         border: 2px outset $colorBorder;
         &::placeholder {
             font-family: 'Bangers', cursive;
             font-weight: 100;
+            font-size: 1.5rem;
+            letter-spacing: 0.2rem;
         }
     }
     .btn {
-        flex: 0 1 12vw;
+        @include widthCalc(1, $days);
     }
     #addTaskButton {
         background-color: $colorError;
+      color: $colorLight;
+    }
+    #daySelect {
+        padding-left: 1rem;
+        option {
+            letter-spacing: 0.2rem;
+        }
     }
 }
 
@@ -93,7 +113,6 @@ section.week {
         border-right: 4px dotted $colorBorder;
         li {
             display: flex;
-            height: 4vh;
             height: calc(100% / $hoursPerDay);
             box-sizing: border-box;
             border-bottom: 2px dotted $colorBorder;
@@ -117,7 +136,7 @@ section.week {
                 padding: 0;
                 .fas {
                     display: inline;
-                    color: #FFF;
+                    color: $colorLight;
                 }
             }
             .btn.delete {
@@ -139,12 +158,23 @@ footer {
     color: $colorLight;
     border-top: 4px dashed $colorBorder;
     height: 10vh;
+    padding-left: 2vw;
     p {
-        line-height: 5vh;
+        line-height: 10vh;
         font-size: 1.5rem;
         letter-spacing: 1.2rem;
+        float: left;
     }
-    .btn {
+    span {
+        line-height: 10vh;
+        font-size: 1.5rem;
+        float: right;
+        padding-right: 2vw;
+    }
+    #removeFinishedTasksButton {
+        @include widthCalc(1, $days);
+        line-height: 10vh;
         background-color: $colorContrast;
+        float: right;
     }
 }

@@ -13,9 +13,9 @@
 <body>
     <header>
         <h1>Week Planner</h1>
-        <input id="taskInput" placeholder="Place your task here"><br>
-        <input id="priorityInput" placeholder="Place task priority here"><br>
-        <input id="timeInput" placeholder="Place time for task"><br>
+        <input id="taskInput" placeholder="Name the task"><br>
+        <input id="priorityInput" placeholder="Task priority"><br>
+        <input id="timeInput" placeholder="Estimated time"><br>
         <select name="daySelect" id="daySelect" class="btn">
             <option value="0" data-day="0">Monday</option>
             <option value="1" data-day="1">Tuesday</option>
@@ -56,10 +56,10 @@
     
     </section>
     <footer>
-        <p>&copy;Copyright 2018 initial configuration</p>
-        <span>Tasks:</span>
+        <p>&copy;Copyright 2018</p>
+        <button id="removeFinishedTasksButton" class="btn">Remove selected</button>
         <span id="counter">0</span>
-        <button id="removeFinishedTasksButton" class="btn">Remove finished tasks</button>
+        <span>Tasks:</span>
     </footer>
 </body>
 </html>
