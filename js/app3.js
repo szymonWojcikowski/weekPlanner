@@ -8,8 +8,24 @@ document.addEventListener("DOMContentLoaded", function () {
     const removeFinishedTasksBtn = document.getElementById("removeFinishedTasksButton");
     const taskToDoCounter = document.getElementById("counter");
 
-    let taskList = [];
-    let idCounter = 0;
+    let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
+    console.log(taskList);
+    //let idCounter = 0;
+    const checkIdCounter = function () {
+        let currentlyBiggest;
+        if (taskList.length === 0) {
+            currentlyBiggest = 0;
+        }
+        else {
+            currentlyBiggest = JSON.parse(localStorage.getItem("idCounter")) || 0;
+            for (let i = 0; i < taskList.length; i++) {
+                taskList[i].id > currentlyBiggest ? currentlyBiggest = taskList[i].id : currentlyBiggest;
+            }
+        }
+        console.log("currentlyBiggest ", currentlyBiggest);
+        return currentlyBiggest;
+    };
+    let idCounter = checkIdCounter(); // || 0;
 
     let dragging;
     let draggingId;
@@ -33,7 +49,7 @@ document.addEventListener("DOMContentLoaded", function () {
         //powyżej użycie .slice() aby stworzyć kopię tablicy, inaczej sortowało również tablicę źródłową
         return sortedTaskTab;
     };
-    //---czyszczenie listy danego dnia
+    //---czyszczenie widoku listy danego dnia
     const clearList = function (dayNr) {
         //console.log(dayNr, typeof dayNr);
         if (Array.isArray(dayNr)) {
@@ -45,38 +61,60 @@ document.addEventListener("DOMContentLoaded", function () {
                         //console.log("w warunku czyszczącym");
                     }
                 }
-
             }
         }
         else {
-            //console.log("var");
             taskListContainer[dayNr].innerHTML = "";
         }
     };
-    //---wypelnianie zadaniami danej listy
+
+    //---przyciski w zadaniach (przeniesione z linii 136)
+    const buttonsInAddedTask = function (dayNr) {
+        const getButtons = taskListContainer[dayNr].querySelectorAll("li>button"); //dayNr undefined
+        //---zdarzenia przyciskow
+        for (let i = 0; i < getButtons.length; i++) {
+            getButtons[i].addEventListener("click", function () {
+                //---klikniecie przycisku usuwania
+                let taskToDelete = [];
+                taskToDelete.push(parseInt(this.parentElement.dataset.id));
+                deleteTaskObjFromTab(taskToDelete);
+                console.log(this);
+                taskListRefresh(this.parentElement.parentElement.dataset.day);
+                TaskCounterRefresh();
+            });
+            i++;//--- przejscie w petli do kolejnego przycisku
+            getButtons[i].addEventListener("click", function (ev) {
+                //---zaznaczenie, ze zrobione
+                complete(this);
+                ev.stopImmediatePropagation();
+            });
+        }
+    };
+
+    //--- wypelnianie widoku zadaniami danej listy
     const printList = function (dayNr) {
         for (let i = 0; i < taskListSorted(taskList).length; i++) {
             let nextTask = taskListSorted(taskList)[i].task;
             let nextTaskId = taskListSorted(taskList)[i].id;
             let nextTaskHeight = sectionWeekHeight/activityHours * taskListSorted(taskList)[i].time;
-            console.warn("nextTaskLength ",nextTaskHeight);
+            console.warn("nextTaskLength ", nextTaskHeight);
             //------------------------------
             let taskToAdd = document.createElement("li");
             taskToAdd.draggable = true;
             taskToAdd.classList.add("task");
             taskToAdd.dataset.id = nextTaskId;
             taskToAdd.style.height = nextTaskHeight + "vh";
-            taskToAdd.innerHTML += `<h1>${nextTask}</h1><button class="btn delete"><i class="fas fa-times"></i></button><button class="btn selected"><i class="fas fa-check"></i></button>`;
+            taskToAdd.innerHTML += `<h1 contenteditable="true">${nextTask}</h1><button class="btn delete"><i class="fas fa-times"></i></button><button class="btn selected"><i class="fas fa-check"></i></button>`;
             if (taskListSorted(taskList)[i].day === dayNr) {
                 taskListContainer[dayNr].appendChild(taskToAdd);
-                //odpalenie obslugi zdarzen dla wydrukowanych guzikow
+                //--- odpalenie obslugi zdarzen dla wydrukowanych guzikow
                 buttonsInAddedTask(dayNr);
                 //console.log("print this task: " + taskList[i]);
             } else {
                 for (let j = 0; j < dayNr.length; j++) {
                     if (taskListSorted(taskList)[i].day === dayNr[j]) {
                         taskListContainer[dayNr[j]].appendChild(taskToAdd);
-                        //odpalenie obslugi zdarzen dla wydrukowanych guzikow
+                        //--- odpalenie obslugi zdarzen dla wydrukowanych guzikow
                         buttonsInAddedTask(dayNr[j]);
                         //console.log("print this task: " + taskList[i]);
                     }
@@ -85,44 +123,47 @@ document.addEventListener("DOMContentLoaded", function () {
             dragEventsOfTask();
         }
     };
+
+
+//-------obsługa localStorage----------
+
+    const saveTaskListToLocalStorage = function () {
+        localStorage.setItem("tasks", JSON.stringify(taskList));
+        localStorage.setItem("idCounter", JSON.stringify(idCounter));
+        console.log("Zaktualizowano magazyn");
+    };
+
+    const clearLocalStorage = function () {
+        localStorage.clear();
+        console.log("Wyczyszczono magazyn");
+    };
+
     //---odswiezanie listy zadan z danego dnia
     const taskListRefresh = function (dayNr) {
+        console.log("tasklistRefreh: ", dayNr);
         clearList(dayNr);
         printList(dayNr);
+        //---aktualizacja danych w localStorage
+        clearLocalStorage();
+        saveTaskListToLocalStorage();
     };
 
     //---odswiezanie licznika zadan
     const TaskCounterRefresh = function () {
         taskToDoCounter.innerText = taskList.length;
     };
+
+    //---budowanie widoku po załadowaniu strony (na podstawie LocalStorage)
+    ( (weekDays) => taskListRefresh(weekDays) )(["0", "1", "2", "3", "4", "5", "6"]);
+    TaskCounterRefresh();
+
     //---czyszczenie inputow
     const inputsRefresh = function () {
         taskInput.value = "";
         priorityInput.value = "";
         timeInput.value = "";
     };
-    //---przyciski w zadaniach
-    const buttonsInAddedTask = function (dayNr) {
-        const getButtons = taskListContainer[dayNr].querySelectorAll("li>button"); //dayNr undefined
-        //---zdarzenia przyciskow
-        for (let i = 0; i < getButtons.length; i++) {
-            getButtons[i].addEventListener("click", function () {
-                //---klikniecie przycisku usuwania
-                let taskToDelete = [];
-                taskToDelete.push(parseInt(this.parentElement.dataset.id));// po tym można szukać argumentu dla tasklistRefresh (odpowiednika taskList.day)
-                deleteTaskObjFromTab(taskToDelete);
-                console.log(this);
-                taskListRefresh(this.parentElement.parentElement.dataset.day);//arg all?
-                TaskCounterRefresh();
-            });
-            i++;//przejscie w petli do kolejnego przycisku
-            getButtons[i].addEventListener("click", function (ev) {
-                //---zaznaczenie, ze zrobione
-                complete(this);
-                ev.stopImmediatePropagation();
-            });
-        }
-    };
+
     //---zebranie do tablicy id zrobionych zadan
     const doneTaskTabPreparation = function () {
         const doneTasks = document.getElementsByClassName("done");
@@ -132,7 +173,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return doneTaskId;
     };
-//------------przygotowanie tablicy dni do odswiezenia-------------------
+//--- przygotowanie tablicy dni do odswiezenia
     const daysToRefresh = function (doneTaskId) {
         let daysToRefreshTab = [];
         for (let i = 0; i < doneTaskId.length; i++) {
@@ -144,7 +185,6 @@ document.addEventListener("DOMContentLoaded", function () {
         }
         return daysToRefreshTab;
     };
-//----------------------------------------
 
     //---przycisk usuwania zrobionych zadan
     removeFinishedTasksBtn.addEventListener("click", function (daysToRefreshTab) {
@@ -154,6 +194,7 @@ document.addEventListener("DOMContentLoaded", function () {
         taskListRefresh(dToRefr);
         TaskCounterRefresh();
     });
+
     //---usuniecie z tablicy obiektow zadan wg przekazanych id
     const deleteTaskObjFromTab = function (toCut) {
         taskList = taskList.filter(item => !toCut.includes(item.id));
@@ -174,6 +215,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 if (Number.isInteger(parseInt(timeInput.value)) && parseInt(timeInput.value) >= 0.5 && checkTotalTime(daySelect.options[daySelect.options.selectedIndex].value) <= activityHours) {
                     taskList.push(new Task(taskInput.value, priorityInput.value, idCounter, daySelect.options[daySelect.options.selectedIndex].value, timeInput.value));//new args 4 & 5
                     idCounter++;
+                    console.log(typeof (daySelect.options[daySelect.options.selectedIndex].value), daySelect.options[daySelect.options.selectedIndex].value);
                     taskListRefresh(daySelect.options[daySelect.options.selectedIndex].value);
                     TaskCounterRefresh();
                     inputsRefresh();
@@ -191,7 +233,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    //taskList tester na żądanie
+    //--- taskList tester na żądanie (t key)
     document.addEventListener("keyup", function (ev) {
         if (ev.which === 84) { //t key
             ev.preventDefault();
@@ -199,15 +241,16 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    //wysokość okna  na żądanie
-    document.addEventListener("keyup", function (ev) {
-        if (ev.which === 72) { //h key
-            ev.preventDefault();
-            console.log(window.innerHeight);
-        }
-    });
+    //--- wysokość okna  na żądanie (h key)
+    // document.addEventListener("keyup", function (ev) {
+    //     if (ev.which === 72) { //h key
+    //         ev.preventDefault();
+    //         console.log(window.innerHeight);
+    //     }
+    // });
 
-//przy dodawaniu taska sprawdzamy czy w danym dniu łączny czas tasków nie przekracza wartości activityHours
+//--- przy dodawaniu taska sprawdzamy
+// czy w danym dniu łączny czas tasków nie przekracza wartości activityHours
 
     function checkTotalTime(whichDay) {
         const currentlyAdded = parseInt(timeInput.value);
@@ -225,7 +268,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
 //----------obsługa-dragable------
 
-// generujemy eventy dla przeciągalnych tasków
+//--- generujemy eventy dla przeciągalnych tasków
     function dragEventsOfTask() {
         const tasks = document.querySelectorAll('.task');
 
@@ -235,7 +278,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     }
 
-//generujemy eventy dla lądowisk (dni)
+//--- generujemy eventy dla lądowisk (dni)
     function dropAreaEvents(days) {
         for (const day of days) {
             day.addEventListener('dragover', dragOver);
@@ -247,7 +290,7 @@ document.addEventListener("DOMContentLoaded", function () {
     dropAreaEvents(taskListContainer);
 
 
-// Drag Functions
+//--- funkcje przeciągania
     function dragStart() {
         dragging = this;
         draggingId = dragging.dataset.id;
@@ -287,6 +330,9 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskList[i].day = this.dataset.day;
             }
         }
+        clearLocalStorage();
+        saveTaskListToLocalStorage();
     }
+//-------end of drag&drop functionality---------
 
 });

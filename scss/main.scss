@@ -122,8 +122,10 @@ section.week {
                 overflow: hidden;
                 box-sizing: border-box;
                 padding: 0.5vh 1vh 0.5vh;
-                line-height: 1.5vh;
-                letter-spacing: 0.8rem;
+                font-size: 1.2rem;
+                font-weight: 100;
+                line-height: 1.5rem;
+                letter-spacing: 0.3rem;
             }
             button {
                 align-self:flex-end;
@@ -134,16 +136,18 @@ section.week {
                 width: 4vh;
                 text-align: center;
                 padding: 0;
+                border: 0px;
                 .fas {
                     display: inline;
+                    line-height: 100%;
                     color: $colorLight;
                 }
             }
             .btn.delete {
-                background-color: $colorBorder;
+                //background-color: $colorError;
             }
             .btn.selected {
-                background-color: $colorError;
+                //background-color: lighten($colorContrast, 15);
             }
         }
         .done {
