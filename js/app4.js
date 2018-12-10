@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
     console.log(taskList);
-    //let idCounter = 0;
+
     const checkIdCounter = function () {
         let currentlyBiggest;
         if (taskList.length === 0) {
@@ -22,11 +22,10 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskList[i].id > currentlyBiggest ? currentlyBiggest = taskList[i].id : currentlyBiggest;
             }
         }
-        console.log("currentlyBiggest ", currentlyBiggest);
         return currentlyBiggest;
     };
-    let idCounter = checkIdCounter(); // || 0;
 
+    let idCounter = checkIdCounter();
     let dragging;
     let draggingId;
 
@@ -39,7 +38,6 @@ document.addEventListener("DOMContentLoaded", function () {
         this.priority = priority;
         this.task = task;
         this.id = id;
-        //-------
         this.day = day;
         this.time = time;
     };
@@ -54,11 +52,9 @@ document.addEventListener("DOMContentLoaded", function () {
         //console.log(dayNr, typeof dayNr);
         if (Array.isArray(dayNr)) {
             for (let i = 0; i < dayNr.length; i++) {
-                //console.log("petla nr" + i, "argument dayNr " + dayNr, "długość arg " + dayNr.length, "HTML danego taska " + taskListContainer[i]);
                 for (let k = 0; k < taskListContainer.length; k++) {
                     if (taskListContainer[k].dataset.day == dayNr[i]) {
                         taskListContainer[k].innerHTML = "";
-                        //console.log("w warunku czyszczącym");
                     }
                 }
             }
@@ -68,7 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     };
 
-    //---przyciski w zadaniach (przeniesione z linii 136)
+    //---przyciski w zadaniach
     const buttonsInAddedTask = function (dayNr) {
         const getButtons = taskListContainer[dayNr].querySelectorAll("li>button"); //dayNr undefined
         //---zdarzenia przyciskow
@@ -78,7 +74,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 let taskToDelete = [];
                 taskToDelete.push(parseInt(this.parentElement.dataset.id));
                 deleteTaskObjFromTab(taskToDelete);
-                console.log(this);
+                //console.log(this);
                 taskListRefresh(this.parentElement.parentElement.dataset.day);
                 TaskCounterRefresh();
             });
@@ -97,8 +93,6 @@ document.addEventListener("DOMContentLoaded", function () {
             let nextTask = taskListSorted(taskList)[i].task;
             let nextTaskId = taskListSorted(taskList)[i].id;
             let nextTaskHeight = sectionWeekHeight/activityHours * taskListSorted(taskList)[i].time;
-            console.warn("nextTaskLength ", nextTaskHeight);
-            //------------------------------
             let taskToAdd = document.createElement("li");
             taskToAdd.draggable = true;
             taskToAdd.classList.add("task");
@@ -109,14 +103,12 @@ document.addEventListener("DOMContentLoaded", function () {
                 taskListContainer[dayNr].appendChild(taskToAdd);
                 //--- odpalenie obslugi zdarzen dla wydrukowanych guzikow
                 buttonsInAddedTask(dayNr);
-                //console.log("print this task: " + taskList[i]);
             } else {
                 for (let j = 0; j < dayNr.length; j++) {
                     if (taskListSorted(taskList)[i].day === dayNr[j]) {
                         taskListContainer[dayNr[j]].appendChild(taskToAdd);
                         //--- odpalenie obslugi zdarzen dla wydrukowanych guzikow
                         buttonsInAddedTask(dayNr[j]);
-                        //console.log("print this task: " + taskList[i]);
                     }
                 }
             }
@@ -130,12 +122,10 @@ document.addEventListener("DOMContentLoaded", function () {
     const saveTaskListToLocalStorage = function () {
         localStorage.setItem("tasks", JSON.stringify(taskList));
         localStorage.setItem("idCounter", JSON.stringify(idCounter));
-        console.log("Zaktualizowano magazyn");
     };
 
     const clearLocalStorage = function () {
         localStorage.clear();
-        console.log("Wyczyszczono magazyn");
     };
 
     //---odswiezanie listy zadan z danego dnia
@@ -213,9 +203,16 @@ document.addEventListener("DOMContentLoaded", function () {
         if (taskInput.value.length > 5 && taskInput.value.length < 100) {
             if (Number.isInteger(parseInt(priorityInput.value)) && parseInt(priorityInput.value) >= 1 && parseInt(priorityInput.value) <= 10) {
                 if (Number.isInteger(parseInt(timeInput.value)) && parseInt(timeInput.value) >= 0.5 && checkTotalTime(daySelect.options[daySelect.options.selectedIndex].value) <= activityHours) {
-                    taskList.push(new Task(taskInput.value, priorityInput.value, idCounter, daySelect.options[daySelect.options.selectedIndex].value, timeInput.value));//new args 4 & 5
+                    taskList.push(new Task(
+                        decodeURIComponent(encodeURIComponent(taskInput.value)),
+                        decodeURIComponent(encodeURIComponent(priorityInput.value)),
+                        decodeURIComponent(encodeURIComponent(idCounter)),
+                        decodeURIComponent(encodeURIComponent(daySelect.options[daySelect.options.selectedIndex].value)),
+                        decodeURIComponent(encodeURIComponent(timeInput.value))
+                        )
+                    );
                     idCounter++;
-                    console.log(typeof (daySelect.options[daySelect.options.selectedIndex].value), daySelect.options[daySelect.options.selectedIndex].value);
+                    //console.log(typeof (daySelect.options[daySelect.options.selectedIndex].value), daySelect.options[daySelect.options.selectedIndex].value);
                     taskListRefresh(daySelect.options[daySelect.options.selectedIndex].value);
                     TaskCounterRefresh();
                     inputsRefresh();
@@ -241,32 +238,21 @@ document.addEventListener("DOMContentLoaded", function () {
         }
     });
 
-    //--- wysokość okna  na żądanie (h key)
-    // document.addEventListener("keyup", function (ev) {
-    //     if (ev.which === 72) { //h key
-    //         ev.preventDefault();
-    //         console.log(window.innerHeight);
-    //     }
-    // });
-
-//--- przy dodawaniu taska sprawdzamy
-// czy w danym dniu łączny czas tasków nie przekracza wartości activityHours
+    //--- przy dodawaniu taska sprawdzamy
+    // czy w danym dniu łączny czas tasków nie przekracza wartości activityHours
 
     function checkTotalTime(whichDay) {
         const currentlyAdded = parseInt(timeInput.value);
         let totalTime = currentlyAdded;
         for (let j = 0; j < taskList.length; j++) {
-            console.log("pętla w funkcji checkTotlaTime");
             if (taskList[j].day === whichDay) {
                 totalTime += parseInt(taskList[j].time);
-                console.log("Spełniony warunek w funkcji checkTotlaTime");
             }
         }
-        console.log("Czas całkowity ", totalTime, typeof totalTime);
         return totalTime;
     }
 
-//----------obsługa-dragable------
+//--------------obsługa-draggable----------------
 
 //--- generujemy eventy dla przeciągalnych tasków
     function dragEventsOfTask() {
@@ -274,7 +260,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
         for (const taskToDrag of tasks) {
             taskToDrag.addEventListener('dragstart', dragStart);
-            taskToDrag.addEventListener('dragend', dragEnd);
         }
     }
 
@@ -283,7 +268,6 @@ document.addEventListener("DOMContentLoaded", function () {
         for (const day of days) {
             day.addEventListener('dragover', dragOver);
             day.addEventListener('dragenter', dragEnter);
-            day.addEventListener('dragleave', dragLeave);
             day.addEventListener('drop', dragDrop);
         }
     }
@@ -294,37 +278,18 @@ document.addEventListener("DOMContentLoaded", function () {
     function dragStart() {
         dragging = this;
         draggingId = dragging.dataset.id;
-        //console.log("dragging", dragging);
-        //this.className += ' hold';
-        //setTimeout(() => (this.className = 'invisible'), 0);
-        //console.log("dragStart");
-    }
-
-    function dragEnd() {
-        //this.className = 'fill';
-        //console.log("dragEnd");
     }
 
     function dragOver(e) {
         e.preventDefault();
-        //console.log("dragOver");
     }
 
     function dragEnter(e) {
         e.preventDefault();
-        //this.className += ' hovered';
-        //console.log("dragEnter");
-    }
-
-    function dragLeave() {
-       // this.className = 'empty';
-        //console.log("dragLeave");
     }
 
     function dragDrop() {
-        //this.className = 'empty';
         this.append(dragging);
-       // console.log("dragDrop", this.dataset.day);
         for (let i = 0; i < taskList.length; i++) {
             if (taskList[i].id == draggingId) {
                 taskList[i].day = this.dataset.day;
@@ -333,6 +298,6 @@ document.addEventListener("DOMContentLoaded", function () {
         clearLocalStorage();
         saveTaskListToLocalStorage();
     }
-//-------end of drag&drop functionality---------
+//---------- koniec obsługi drag&drop ---------
 
 });
