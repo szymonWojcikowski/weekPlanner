@@ -2,7 +2,7 @@
 Week Planner - Work in progress
 JS + SCSS + HTML5
 
-Features:
+**Features:**
 * 16 hours working day
 * task priority (from 1 means low to 10 means high)
 * tasks are editable

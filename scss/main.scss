@@ -112,7 +112,7 @@ section.week {
         height: 80vh;
         border-right: 4px dotted $colorBorder;
         li {
-            display: flex;
+            //display: flex;
             height: calc(100% / $hoursPerDay);
             box-sizing: border-box;
             border-bottom: 2px dotted $colorBorder;
@@ -127,8 +127,15 @@ section.week {
                 line-height: 1.5rem;
                 letter-spacing: 0.3rem;
             }
+            .descr {
+                font-size: 1rem;
+                font-weight: 100;
+                line-height: 1.2rem;
+                letter-spacing: 0.1rem;
+            }
             button {
-                align-self:flex-end;
+                //align-self:flex-end;
+                float: right;
                 font-family: 'Bangers', cursive;
                 min-height: 20px;
                 min-width: 20px;
@@ -137,6 +144,7 @@ section.week {
                 text-align: center;
                 padding: 0;
                 border: 0px;
+                outline-width: 0;
                 .fas {
                     display: inline;
                     line-height: 100%;

@@ -98,7 +98,7 @@ document.addEventListener("DOMContentLoaded", function () {
             taskToAdd.classList.add("task");
             taskToAdd.dataset.id = nextTaskId;
             taskToAdd.style.height = nextTaskHeight + "vh";
-            taskToAdd.innerHTML += `<h1 contenteditable="true">${nextTask}</h1><button class="btn delete"><i class="fas fa-times"></i></button><button class="btn selected"><i class="fas fa-check"></i></button>`;
+            taskToAdd.innerHTML += `<h1>${nextTask}</h1><p class="descr" contenteditable="true">Add short description by click.</p><button class="btn delete"><i class="fas fa-times"></i></button><button class="btn selected"><i class="fas fa-check"></i></button>`;
             if (taskListSorted(taskList)[i].day === dayNr) {
                 taskListContainer[dayNr].appendChild(taskToAdd);
                 //--- odpalenie obslugi zdarzen dla wydrukowanych guzikow
@@ -206,7 +206,7 @@ document.addEventListener("DOMContentLoaded", function () {
                     taskList.push(new Task(
                         decodeURIComponent(encodeURIComponent(taskInput.value)),
                         decodeURIComponent(encodeURIComponent(priorityInput.value)),
-                        decodeURIComponent(encodeURIComponent(idCounter)),
+                        idCounter,
                         decodeURIComponent(encodeURIComponent(daySelect.options[daySelect.options.selectedIndex].value)),
                         decodeURIComponent(encodeURIComponent(timeInput.value))
                         )
@@ -228,6 +228,12 @@ document.addEventListener("DOMContentLoaded", function () {
         else {
             alert("Whooha! \n ProTip: Minimum 5 znaków, nie więcej niż 100.");
         }
+    });
+
+    //--- nasłuch zdarzenia na inpucie nazwy taska, wyświetlenie dostępnej liczby znaków
+    taskInput.addEventListener("keypress", function () {
+        let displayRemainingChars = 20 - taskInput.value.length;
+        console.log(displayRemainingChars, taskInput.value.length);
     });
 
     //--- taskList tester na żądanie (t key)
