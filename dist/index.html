@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>WeekPlanner</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Bangers">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css"
+          integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU"
+          crossorigin="anonymous">
+    <!--<link rel="stylesheet" href="css/main.css">-->
+    <!--<script src="js/app5.js"></script>-->
+</head>
+<body>
+<header id="header">
+    <h1>Week Planner</h1>
+    <input id="taskInput" type="text" placeholder="Name the task" maxlength="20"><div id="outputHolder"><output for="taskInput" id="remainingChars">20</output></div><br>
+    <input id="priorityInput" placeholder="Task priority"><br>
+    <input id="timeInput" placeholder="Estimated time"><br>
+    <select name="daySelect" id="daySelect" class="btn">
+        <option value="0" data-day="0">Monday</option>
+        <option value="1" data-day="1">Tuesday</option>
+        <option value="2" data-day="2">Wednesday</option>
+        <option value="3" data-day="3">Thursday</option>
+        <option value="4" data-day="4">Friday</option>
+        <option value="5" data-day="5">Saturday</option>
+        <option value="6" data-day="6">Sunday</option>
+    </select>
+    <button id="addTaskButton" class="btn">Add task</button>
+</header>
+
+
+
+<section class="week" data-week-nr="1">
+
+    <ul class="day" data-day="0"></ul>
+    <ul class="day" data-day="1"></ul>
+    <ul class="day" data-day="2"></ul>
+    <ul class="day" data-day="3"></ul>
+    <ul class="day" data-day="4"></ul>
+    <ul class="day" data-day="5"></ul>
+    <ul class="day" data-day="6"></ul>
+
+
+</section>
+<footer>
+    <p>&copy;Copyright 2018</p>
+    <button id="removeFinishedTasksButton" class="btn">Remove selected</button>
+    <span id="counter">0</span>
+    <span>Tasks:</span>
+</footer>
+<script type="text/javascript" src="main.js"></script></body>
+</html>
