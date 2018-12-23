@@ -1,6 +1,6 @@
 # weekPlanner
-Week Planner - Work in progress
-JS + SCSS + HTML5
+Week Planner (JS + SCSS + HTML5)
+:new: Rewriting to React in progress :hourglass_flowing_sand:
 
 **Features:**
 * 16 hours working day :clock930:
