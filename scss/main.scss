@@ -106,7 +106,7 @@ header {
             font-weight: 100;
             font-size: 1.5rem;
             letter-spacing: 0rem;
-            line-height: $headerHeight / 2;
+            line-height: $headerHeight / 1.75;
         }
         #remainingChars.error {
             color: $colorError;
@@ -145,9 +145,10 @@ section.week {
             height: 100% / $hoursPerDay;
             box-sizing: border-box;
             border-bottom: 2px dotted $colorBorder;
-            background-color: lighten($colorContrast, 35);
+            background-color: darken($colorContrast, 15);
             h1 {
-                width: calc(100% - 8.2vh);
+                // width: calc(100% - 8.2vh);
+                width: calc(100% - 10vh);
                 overflow: hidden;
                 box-sizing: border-box;
                 padding: 0.5vh 1vh 0.5vh;
@@ -155,14 +156,17 @@ section.week {
                 font-weight: 100;
                 line-height: 1.5rem;
                 letter-spacing: 0.3rem;
-                color: $colorFont;
+                color: $colorLight;
                 //text-shadow: 1px 1px 1px #000;
             }
             .descr {
+                width: calc(100% - 10vh);
+                padding: 0.5vh 1vw 0.5vh;
                 font-size: 1rem;
                 font-weight: 100;
                 line-height: 1.2rem;
                 letter-spacing: 0.1rem;
+                color: $colorLight;
             }
             button {
                 position: absolute;
@@ -181,7 +185,7 @@ section.week {
                     display: inline;
                     line-height: 100%;
                     color: $colorLight;
-                    color: $colorFont;
+                    //color: $colorFont;
                 }
             }
             .btn.delete {
@@ -192,7 +196,7 @@ section.week {
             }
         }
         .done {
-            background-color: lighten($colorPrimary, 10);
+            background-color: darken($colorPrimary, 35);
         }
 
     }
