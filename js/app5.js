@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const addBtn = document.getElementById("addTaskButton");
     const removeFinishedTasksBtn = document.getElementById("removeFinishedTasksButton");
     const taskToDoCounter = document.getElementById("counter");
+    const remainingChars = document.getElementById("remainingChars");
 
     let taskList = JSON.parse(localStorage.getItem("tasks")) || [];
     console.log(taskList);
@@ -231,9 +232,30 @@ document.addEventListener("DOMContentLoaded", function () {
     });
 
     //--- nasłuch zdarzenia na inpucie nazwy taska, wyświetlenie dostępnej liczby znaków
-    taskInput.addEventListener("keypress", function () {
-        let displayRemainingChars = 20 - taskInput.value.length;
-        console.log(displayRemainingChars, taskInput.value.length);
+    // taskInput.addEventListener("keypress", function () {
+    //     let displayRemainingChars = 20 - taskInput.value.length;
+    //     console.log(displayRemainingChars, taskInput.value.length);
+    //     taskInput.setAttribute('data-before', displayRemainingChars);
+    //
+    // });
+
+
+    taskInput.addEventListener('input', function() {
+        let displayRemainingChars = 20 - this.value.length;
+        remainingChars.value = displayRemainingChars;
+        if (displayRemainingChars <= 0) {
+            remainingChars.classList.add("error");
+            remainingChars.value = "no more";
+        }
+        console.log(taskInput);
+
+        // function setDefaultState() {
+        //     remainingChars.value = displayRemainingChars;
+        // }
+        //
+        // document.addEventListener('DOMContentLoaded', function () {
+        //     setDefaultState();
+        // })
     });
 
     //--- taskList tester na żądanie (t key)

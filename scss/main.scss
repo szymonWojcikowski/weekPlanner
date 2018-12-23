@@ -10,8 +10,12 @@ $colorError: rgba(158, 43, 37, 1);
 $tablet-width: 768px;
 $desktop-width: 1024px;
 
+$headerHeight: 10vh;
+
 $days: 7;
 $hoursPerDay: 12;
+
+
 
 
 @mixin widthCalc($number, $days) {
@@ -83,12 +87,37 @@ header {
             letter-spacing: 0.2rem;
         }
     }
+    #outputHolder {
+        position: relative;
+        height: 100%;
+        line-height: 100%;
+        #remainingChars {
+            display: inline;
+            position: absolute;
+            top: 0.5rem;
+            bottom: 0.5rem;
+            padding: $headerHeight / 20;
+            vertical-align: middle;
+            border-left: 2px dashed lighten($colorBorder, 20);
+            color: lighten($colorFont, 20);
+            cursor: pointer;
+            margin-left: -5.5rem;
+            font-family: 'Bangers', cursive;
+            font-weight: 100;
+            font-size: 1.5rem;
+            letter-spacing: 0rem;
+            line-height: $headerHeight / 2;
+        }
+        #remainingChars.error {
+            color: $colorError;
+        }
+    }
     .btn {
         @include widthCalc(1, $days);
     }
     #addTaskButton {
         background-color: $colorError;
-      color: $colorLight;
+        color: $colorLight;
     }
     #daySelect {
         padding-left: 1rem;
@@ -112,11 +141,11 @@ section.week {
         height: 80vh;
         border-right: 4px dotted $colorBorder;
         li {
-            //display: flex;
-            height: calc(100% / $hoursPerDay);
+            position: relative;
+            height: 100% / $hoursPerDay;
             box-sizing: border-box;
             border-bottom: 2px dotted $colorBorder;
-            background-color: $colorContrast;
+            background-color: lighten($colorContrast, 35);
             h1 {
                 width: calc(100% - 8.2vh);
                 overflow: hidden;
@@ -126,6 +155,8 @@ section.week {
                 font-weight: 100;
                 line-height: 1.5rem;
                 letter-spacing: 0.3rem;
+                color: $colorFont;
+                //text-shadow: 1px 1px 1px #000;
             }
             .descr {
                 font-size: 1rem;
@@ -134,7 +165,8 @@ section.week {
                 letter-spacing: 0.1rem;
             }
             button {
-                //align-self:flex-end;
+                position: absolute;
+                bottom: 0.2rem;
                 float: right;
                 font-family: 'Bangers', cursive;
                 min-height: 20px;
@@ -149,17 +181,18 @@ section.week {
                     display: inline;
                     line-height: 100%;
                     color: $colorLight;
+                    color: $colorFont;
                 }
             }
             .btn.delete {
-                //background-color: $colorError;
+                right: 0vh;
             }
             .btn.selected {
-                //background-color: lighten($colorContrast, 15);
+                right: 6vh;
             }
         }
         .done {
-            background-color: $colorPrimary;
+            background-color: lighten($colorPrimary, 10);
         }
 
     }
