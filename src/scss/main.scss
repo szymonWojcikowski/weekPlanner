@@ -140,12 +140,17 @@ section.week {
         }
         height: 80vh;
         border-right: 4px dotted $colorBorder;
+        writing-mode: vertical-lr;
+        text-orientation: upright;
+        text-indent: 2rem;
+        color: rgba(34, 34, 34, .4);
         li {
             position: relative;
             height: 100% / $hoursPerDay;
             box-sizing: border-box;
             border-bottom: 2px dotted $colorBorder;
             background-color: darken($colorContrast, 15);
+            writing-mode: horizontal-tb;
             h1 {
                 // width: calc(100% - 8.2vh);
                 width: calc(100% - 10vh);
