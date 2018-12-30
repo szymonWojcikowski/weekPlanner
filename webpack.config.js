@@ -4,6 +4,7 @@ module.exports = {
     mode: 'development',
     entry: "./src/App.jsx",
     watch: true,
+    devtool: "source-map",
     module: {
         rules: [
             {

@@ -2,6 +2,7 @@
 *.*~
 node_modules
 /trash
+/js
 app.js
 app-3-dragable.js
 working-copy-2-app.js
