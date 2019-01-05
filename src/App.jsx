@@ -15,10 +15,12 @@ class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            openAddFormClicked: false
+            openAddFormClicked: false,
+            tasks: []
         };
 
         this.handleClick = this.handleClick.bind(this);
+        this.handleT = this.handleT.bind(this);
     };
 
     handleClick(event) {
@@ -28,11 +30,21 @@ class App extends React.Component {
         console.log(this.state.openAddFormClicked);
     };
 
+    handleT(event) {
+        event.preventDefault();
+        if (event.keyCode === 84) {
+            console.log(this.state.tasks);
+        }
+    };
+
     render() {
         return (
-            <div>
-                <Header that={this} />
-                {this.state.openAddFormClicked ? <AddForm /> : <PlansSection />}
+            <div onKeyDownCapture={this.handleT}>
+                <Header
+                    handleClick={this.handleClick}
+                    data={this.state}
+                />
+                {this.state.openAddFormClicked ? <AddForm tasks={this.state.tasks}/> : <PlansSection />}
                 <Footer />
             </div>
         )
