@@ -5,6 +5,7 @@ class AddForm extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
+            tasks: props.tasks,
             taskName: "",
             taskPriority: 0,
             value: 0,
@@ -22,13 +23,13 @@ class AddForm extends React.Component {
     };
 
     handleSubmit(event) {
-        alert('An essay was submitted: ' + this.state.value);
+        console.log('props ', this.props, "tasks from state ", this.state.tasks);
         event.preventDefault();
     };
 
     render() {
         return (
-            <form onSubmit={this.handleSubmit}>
+            <form className="addForm" onSubmit={this.handleSubmit}>
                 <input
                     type="text"
                     value={this.state.taskName}
@@ -36,20 +37,24 @@ class AddForm extends React.Component {
                     placeholder="Name the task"
                     onChange={this.handleChange}
                 />
-                <input
-                    type="number"
-                    value={this.state.taskPriority}
-                    name="taskPriority"
-                    placeholder="Task priority"
-                    onChange={this.handleChange}
-                />
-                <input
-                    type="number"
-                    value={this.state.estimatedTime}
-                    name="estimatedTime"
-                    placeholder="Estimated time"
-                    onChange={this.handleChange}
-                />
+                <label>Task priority
+                    <input
+                        type="number"
+                        value={this.state.taskPriority}
+                        name="taskPriority"
+                        placeholder="Task priority"
+                        onChange={this.handleChange}
+                    />
+                </label>
+                <label>Estimated time
+                    <input
+                        type="number"
+                        value={this.state.estimatedTime}
+                        name="estimatedTime"
+                        placeholder="Estimated time"
+                        onChange={this.handleChange}
+                    />
+                </label>
                 <select value={this.state.value} name="value" onChange={this.handleChange}>
                     <option value="0" data-day="0">Monday</option>
                     <option value="1" data-day="1">Tuesday</option>
