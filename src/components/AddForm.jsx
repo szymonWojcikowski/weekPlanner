@@ -6,10 +6,10 @@ class AddForm extends React.Component {
         super(props);
         this.state = {
             tasks: props.tasks,
-            taskName: "",
-            taskPriority: 0,
-            value: 0,
-            estimatedTime: 0
+            // taskName: "",
+            // taskPriority: 0,
+            // value: 0,
+            // estimatedTime: 0
         };
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -23,7 +23,10 @@ class AddForm extends React.Component {
     };
 
     handleSubmit(event) {
-        console.log('props ', this.props, "tasks from state ", this.state.tasks);
+
+        //console.log('props ', this.props, "tasks from state ", this.state.tasks);
+        //event.preventDefault();
+        this.props.handleSubmit(event.target.value);
         event.preventDefault();
     };
 

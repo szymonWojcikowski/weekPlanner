@@ -8,19 +8,22 @@ import AddForm from "./components/AddForm.jsx";
 import PlansSection from "./components/PlansSection.jsx";
 import Footer from "./components/Footer.jsx";
 
-
-
-
 class App extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             openAddFormClicked: false,
+            // properties for taskObjToAdd
+            taskName: "ble ble",
+            taskPriority: 0,
+            value: 0,
+            estimatedTime: 0,
             tasks: []
         };
 
         this.handleClick = this.handleClick.bind(this);
         this.handleT = this.handleT.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
     };
 
     handleClick(event) {
@@ -37,6 +40,20 @@ class App extends React.Component {
         }
     };
 
+    handleSubmit() {
+        console.log('props ', this.props, "tasks from state ", this.state.tasks);
+        const taskArr = [];
+        taskArr.push(
+            {
+                taskName: this.state.taskName,
+                taskPriority: this.state.taskPriority,
+                value: this.state.value,
+                estimatedTime: this.state.estimatedTime
+            }
+        );
+        this.setState({ tasks: taskArr })
+    };
+
     render() {
         return (
             <div onKeyDownCapture={this.handleT}>
@@ -44,16 +61,12 @@ class App extends React.Component {
                     handleClick={this.handleClick}
                     data={this.state}
                 />
-                {this.state.openAddFormClicked ? <AddForm tasks={this.state.tasks}/> : <PlansSection />}
+                {this.state.openAddFormClicked ? <AddForm tasks={this.state.tasks} handleSubmit={this.handleSubmit} /> : <PlansSection />}
                 <Footer />
             </div>
         )
     }
 }
-
-
-
-
 
 //--------------components rendering--------------
 document.addEventListener('DOMContentLoaded',
