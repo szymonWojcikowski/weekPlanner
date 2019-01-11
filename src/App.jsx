@@ -16,7 +16,7 @@ class App extends React.Component {
             // properties for taskObjToAdd
             taskName: "ble ble",
             taskPriority: 0,
-            value: 0,
+            dayIndex: 0,
             estimatedTime: 0,
             tasks: []
         };
@@ -24,6 +24,7 @@ class App extends React.Component {
         this.handleClick = this.handleClick.bind(this);
         this.handleT = this.handleT.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.handleChange = this.handleChange.bind(this.state);// this.state
     };
 
     handleClick(event) {
@@ -38,6 +39,15 @@ class App extends React.Component {
         if (event.keyCode === 84) {
             console.log(this.state.tasks);
         }
+    };
+
+    handleChange(event) {
+        console.log("change ", event);
+        const {name, value} = event.target;
+        this.setState({   //App.jsx:47 Uncaught TypeError: this.setState is not a function
+            [name]: value
+        });
+
     };
 
     handleSubmit() {
@@ -61,7 +71,15 @@ class App extends React.Component {
                     handleClick={this.handleClick}
                     data={this.state}
                 />
-                {this.state.openAddFormClicked ? <AddForm tasks={this.state.tasks} handleSubmit={this.handleSubmit} /> : <PlansSection />}
+                {this.state.openAddFormClicked ? <AddForm
+                    tasks={this.state.tasks}
+                    handleSubmit={this.handleSubmit}
+                    handleChange={this.handleChange}
+                    taskName={this.state.taskName}
+                    taskPriority={this.state.taskPriority}
+                    dayIndex={this.state.dayIndex}
+                    estimatedTime={this.state.estimatedTime}
+                /> : <PlansSection />}
                 <Footer />
             </div>
         )
