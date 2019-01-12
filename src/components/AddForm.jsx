@@ -33,10 +33,10 @@ class AddForm extends React.Component {
     render() {
         return (
             <form className="addForm" onSubmit={this.handleSubmit}>
-                <label>Tak name
+                <label>Task name
                     <input
                         type="text"
-                        value={this.props.taskName}
+                        // value={this.props.taskName}
                         name="taskName"
                         placeholder="Name the task"
                         onChange={this.props.handleChange}
