@@ -42,33 +42,58 @@ class App extends React.Component {
     };
 
     handleChange(event) {
+        this.setState({[event.target.name]: event.target.value});
         console.log("change ", event);
         console.log("state ", this.state);
         //const {name, value} = event.target;
         // this.setState({   //App.jsx:47 Uncaught TypeError: this.setState is not a function
         //     [name]: value  //[event.target.name]: event.target.value
         // });
-        this.setState({[event.target.name]: event.target.value})
-
     };
 
-    handleSubmit() {
-        console.log('props ', this.props, "tasks from state ", this.state.tasks);
-        const taskArr = [];
-        taskArr.push(
-            {
-                taskName: this.state.taskName,
-                taskPriority: this.state.taskPriority,
-                value: this.state.value,
-                estimatedTime: this.state.estimatedTime
-            }
-        );
-        this.setState({ tasks: taskArr })
+    // handleSubmit() {
+    //
+    //     const taskArr = [];
+    //     taskArr.push(
+    //         {
+    //             taskName: this.state.taskName,
+    //             taskPriority: this.state.taskPriority,
+    //             value: this.state.value,
+    //             estimatedTime: this.state.estimatedTime
+    //         }
+    //     );
+    //     this.setState({ tasks: taskArr });
+    //     this.state.openAddFormClicked ? this.setState({openAddFormClicked: false}) : this.setState({openAddFormClicked: true});
+    //     console.warn("Obiekt do dodania", taskArr);
+    //     console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
+    //     console.info("tasks from state ", this.state.tasks);
+    // };
+
+    handleSubmit = (event) => {
+            event.preventDefault();
+            const taskArr = [];
+            taskArr.push(
+                {
+                    taskName: this.state.taskName,
+                    taskPriority: this.state.taskPriority,
+                    dayIndex: this.state.dayIndex,
+                    estimatedTime: this.state.estimatedTime
+                }
+            );
+            this.setState( prevState => ({
+                tasks: [...prevState.tasks, taskArr]
+            }));
+            this.state.openAddFormClicked ? this.setState({openAddFormClicked: false}) : this.setState({openAddFormClicked: true});
+            console.warn("Obiekt do dodania", taskArr);
+
     };
 
     render() {
+        console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
+        console.info("tasks from state ", this.state.tasks);
+
         return (
-            <div onKeyDownCapture={this.handleT}>
+            <div onKeyDown={this.handleT}>
                 <Header
                     handleClick={this.handleClick}
                     data={this.state}

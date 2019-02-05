@@ -15,28 +15,28 @@ class AddForm extends React.Component {
         // this.taskPriority={this.state.taskPriority};
         // this.dayIndex={this.state.dayIndex};
         // this.estimatedTime={this.state.estimatedTime};
-        this.handleSubmit = this.handleSubmit.bind(this);
+        //this.handleSubmit = this.handleSubmit.bind(this);
         //this.handleChange = this.handleChange.bind(this);
         //this.handleChange = props.handleChange;
     };
 
 
 
-    handleSubmit(event) {
-
-        //console.log('props ', this.props, "tasks from state ", this.state.tasks);
-        //event.preventDefault();
-        this.props.handleSubmit(event.target.value);
-        event.preventDefault();
-    };
+    // handleSubmit(event) {
+    //
+    //     //console.log('props ', this.props, "tasks from state ", this.state.tasks);
+    //     //event.preventDefault();
+    //     this.props.handleSubmit(event.target.value);
+    //     event.preventDefault();
+    // };
 
     render() {
         return (
-            <form className="addForm" onSubmit={this.handleSubmit}>
+            <form className="addForm" onSubmit={this.props.handleSubmit}>
                 <label>Task name
                     <input
                         type="text"
-                        // value={this.props.taskName}
+                        value={this.props.taskName}
                         name="taskName"
                         placeholder="Name the task"
                         onChange={this.props.handleChange}
@@ -61,7 +61,7 @@ class AddForm extends React.Component {
                         onChange={this.props.handleChange}
                     />
                 </label>
-                <select value={this.props.dayIndex} name="value" onChange={this.props.handleChange}>
+                <select value={this.props.dayIndex} name="dayIndex" onChange={this.props.handleChange}>
                     <option value="0" data-day="0">Monday</option>
                     <option value="1" data-day="1">Tuesday</option>
                     <option value="2" data-day="2">Wednesday</option>
@@ -71,8 +71,8 @@ class AddForm extends React.Component {
                     <option value="6" data-day="6">Sunday</option>
                 </select>
                 <input type="submit" value="Submit" />
-                {/*<h1>{this.state.taskName}<br />*/}
-                    {/*priority {this.state.taskPriority}, day {this.state.value}, estimated {this.state.estimatedTime} houres</h1>*/}
+                <h1>{this.props.taskName}<br />
+                    priority {this.props.taskPriority}, day {this.props.value}, estimated {this.props.estimatedTime} houres</h1>
             </form>
         );
     };

@@ -1,17 +1,33 @@
 import React from "react";
+import ReactDOM from 'react-dom';
+
+import Day from "./Day.jsx";
 
 
-const Day = ({dataDay, day}) => {
-    return (
-        <ul className="day" data-day={dataDay}>{day}</ul>
-    )
-};
+
 
 class PlansSection extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
             screenSize: window.innerWidth,
+            days: [
+                [{
+                    taskName: "taskName",
+                    taskPriority: "3",
+                    estimatedTime: "4"
+                }, {
+                    taskName: "taskNameTest",
+                    taskPriority: "2",
+                    estimatedTime: "2"
+                }],
+                [],
+                [],
+                [],
+                [],
+                [],
+                []
+            ]
 
         };
         this.daysDisplay = this.daysDisplay.bind(this);
@@ -32,11 +48,11 @@ class PlansSection extends React.Component {
         //         <li className="day" id={i}>Dzień nr {i}</li>
         //     );
         // }
-        const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday", "Sunday"];
+        const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
 
 
         const enableDays = daysOfWeek.map( (day, index) => {
-            return <Day key={index} dataDay={index} day={day}>{day}</Day>
+            return <Day key={index} dataDay={this.index} day={day} xDay={this.state.days[index]}>{day}</Day>
         });
 
         const daysToDisplay = [];
@@ -53,7 +69,7 @@ class PlansSection extends React.Component {
             d = document,
             documentElement = d.documentElement,
             body = d.getElementsByTagName('body')[0],
-            width = w.innerWidth || documentElement.clientWidth || body.clientWidth
+            width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
             //height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
 
         //this.setState({width: width, height: height});
