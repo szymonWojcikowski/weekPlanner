@@ -140,10 +140,17 @@ section.week {
         }
         height: 80vh;
         border-right: 4px dotted $colorBorder;
-        writing-mode: vertical-lr;
+        //writing-mode: vertical-lr;
         text-orientation: upright;
-        text-indent: 2rem;
+        //text-indent: 2rem;
         color: rgba(34, 34, 34, .4);
+        span {
+            position: absolute;
+            top: 12vh;
+            margin-left: 1vw;
+            transform-origin: top left;
+            transform: rotate(30deg);
+        }
         li {
             position: relative;
             height: 100% / $hoursPerDay;

@@ -3,12 +3,23 @@ import ReactDOM from 'react-dom';
 
 
 const Task = (props) => {
+    console.log("Propsy w tasku: ", props);
+    const { estimatedTime } = props;
+    console.log("czas::::", estimatedTime);
+    const sectionWeekHeight = 80;
+    const activityHours = 16;
+    let style = {
+        height: sectionWeekHeight/activityHours * parseInt(estimatedTime)+"vh"
+    };
+
     return (
-        <li>
+        <li style={style}>
             <h1>{props.taskName}</h1>
-            <span>Description will be here</span>
+            <p className="descr">{props.taskPriority}</p>
+            <button className="btn selected"><i className="fas fa-check" /></button>
+            <button className="btn delete"><i className="fas fa-times" /></button>
         </li>
     )
 };
 
-export default Task;
+export default Task; //?

@@ -5,7 +5,7 @@ import './scss/main.scss';
 
 import Header from "./components/Header.jsx";
 import AddForm from "./components/AddForm.jsx";
-import PlansSection from "./components/PlansSection.jsx";
+import PlansSectionOld from "./components/PlansSection.jsx";
 import Footer from "./components/Footer.jsx";
 
 class App extends React.Component {
@@ -106,7 +106,7 @@ class App extends React.Component {
                     taskPriority={this.state.taskPriority}
                     dayIndex={this.state.dayIndex}
                     estimatedTime={this.state.estimatedTime}
-                /> : <PlansSection />}
+                /> : <PlansSectionOld />}
                 <Footer />
             </div>
         )

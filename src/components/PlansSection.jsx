@@ -30,9 +30,9 @@ class PlansSection extends React.Component {
             ]
 
         };
-        this.daysDisplay = this.daysDisplay.bind(this);
+        //this.daysDisplay = this.daysDisplay.bind(this);
         this.handleLoad = this.handleLoad.bind(this);
-        this.updateDimensions = this.updateDimensions.bind(this);
+        //this.updateDimensions = this.updateDimensions.bind(this);
     };
 
     handleLoad(event) {
@@ -42,59 +42,55 @@ class PlansSection extends React.Component {
         })
     };
 
-    daysDisplay(numberOfDays) {
-        // for(let i = 0; i < numberOfDays; i++) {
-        //     return (
-        //         <li className="day" id={i}>Dzień nr {i}</li>
-        //     );
-        // }
-        const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    // daysDisplay(numberOfDays) {
+    //     // for(let i = 0; i < numberOfDays; i++) {
+    //     //     return (
+    //     //         <li className="day" id={i}>Dzień nr {i}</li>
+    //     //     );
+    //     // }
+    //     const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
+    //
+    //
+    //     const enableDays = daysOfWeek.map( (day, index) => {
+    //         return <Day key={index} dataDay={index} day={day} tasks={this.state.days[index]} days={this.state.days}>{day}</Day>
+    //     });
+    //
+    //     const daysToDisplay = [];
+    //
+    //     for(let i = 0; i < numberOfDays; i++) {
+    //         daysToDisplay.push(enableDays[i]);
+    //     }
+    //
+    //     return daysToDisplay;
+    // };
 
 
-        const enableDays = daysOfWeek.map( (day, index) => {
-            return <Day key={index} dataDay={this.index} day={day} xDay={this.state.days[index]}>{day}</Day>
-        });
+    // componentWillMount() {
+    //     this.updateDimensions();
+    // };
 
-        const daysToDisplay = [];
+    // componentDidMount() {
+    //     window.addEventListener("resize", this.updateDimensions);
+    // };
 
-        for(let i = 0; i < numberOfDays; i++) {
-            daysToDisplay.push(enableDays[i]);
-        }
-
-        return daysToDisplay;
-    };
-
-    updateDimensions() {
-        let w = window,
-            d = document,
-            documentElement = d.documentElement,
-            body = d.getElementsByTagName('body')[0],
-            width = w.innerWidth || documentElement.clientWidth || body.clientWidth;
-            //height = w.innerHeight|| documentElement.clientHeight|| body.clientHeight;
-
-        //this.setState({width: width, height: height});
-        this.setState({screenSize: width});
-        // if you are using ES2015 I'm pretty sure you can do this: this.setState({width, height});
-    };
-
-    componentWillMount() {
-        this.updateDimensions();
-    };
-
-    componentDidMount() {
-        window.addEventListener("resize", this.updateDimensions);
-    };
-
-    componentWillUnmount() {
-        window.removeEventListener("resize", this.updateDimensions);
-    };
+    // componentWillUnmount() {
+    //     window.removeEventListener("resize", this.updateDimensions);
+    // };
 
 
 
     render() {
+        const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
         return (
             <section className="week" onLoad={this.handleLoad}>
-                { this.state.screenSize < 961 ? this.daysDisplay(1) : this.daysDisplay(7) }
+                {daysOfWeek.map((day, index) => {
+                    return (<Day key={index}
+                                dataDay={index}
+                                day={day}
+                                tasks={this.state.days[index]}>
+                                    {day}
+                                </Day>)
+                })}
             </section>
         );
     }
