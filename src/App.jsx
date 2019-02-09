@@ -85,7 +85,7 @@ class App extends React.Component {
 
     handleDelete = day => toDel =>  {
         console.log("Skasujmy coś");
-        console.log("Skasujmy coś, najlepiej ", event.target.parentElement.parentElement);
+        //console.log("Skasujmy coś, najlepiej ", event.target.parentElement.parentElement);
         //const toDel = event.target.parentElement.parentElement.dataset.id;
        // const day = event.target.parentElement.parentElement.parentElement.dataset.day;
 
@@ -104,13 +104,26 @@ class App extends React.Component {
                 days: newDays
             })
         });
-
     };
 
-    handleSelected(event) {
+    handleSelected = day => toPush => {
         console.log("Zaznaczone");
-        console.log("zanzaczono ", event.target.parentElement.parentElement.dataset.id);
-        console.warn(this.state);
+        //console.log("zanzaczono ", event.target.parentElement.parentElement.dataset.id);
+        console.info(this.state.depot);
+
+
+        this.setState( prevState => {
+            let toDepot = prevState.days;
+
+            toDepot = toDepot[day].filter( item => item.id == toPush );
+
+            console.warn("Selected to depot------ /n ::::", toDepot[day], toDepot, day, event.target);
+
+
+            return ({
+                 depot: [...prevState.depot, ...toDepot]
+            })
+        });
     };
 
     handleSubmit = (event) => {
@@ -155,6 +168,8 @@ class App extends React.Component {
 
     render() {
         console.log("-Days-", this.state.days);
+        console.log("-Depot-", this.state.depot);
+
         //console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
 
         return (

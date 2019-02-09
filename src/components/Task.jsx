@@ -17,11 +17,11 @@ const Task = (props) => {
             <h1>{props.taskName}</h1>
             <p className="descr">{props.taskPriority}</p>
             <button className="btn selected"
-                    onClick={props.handleSelected}>
+                    onClick={() => props.handleSelected(props.id)}>
                         <i className="fas fa-check" />
             </button>
             <button className="btn delete"
-                    onClick={() => props.handleDelete(props.dataId)}>
+                    onClick={() => props.handleDelete(props.id)}>
                         <i className="fas fa-times" />
             </button>
         </li>

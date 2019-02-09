@@ -6,15 +6,13 @@ import PlansSection from "./PlansSection.jsx";
 class Day extends React.Component {
     constructor(props) {
         super(props);
-        this.state = {
-            // tasks: this.props.tasks,
-            // monday: this.props[0].tasks
-        };
+        // this.state = {
+        // };
     }
 
     render() {
         console.log("Props ", this.props);
-        console.log("Tasks ", this.state.tasks);
+        // console.log("Tasks ", this.state.tasks);
         // console.log("state.tasks ", this.state.monday);
         return (
             <ul className="day">
@@ -23,12 +21,12 @@ class Day extends React.Component {
                     return (
                         <Task
                             key={index}
-                            dataId={item.id}
+                            id={item.id}
                             taskName={item.taskName}
                             taskPriority={item.taskPriority}
                             estimatedTime={item.estimatedTime}
                             handleDelete={this.props.handleDelete(this.props.dataDay)}
-                            handleSelected={this.props.handleSelected}
+                            handleSelected={this.props.handleSelected(this.props.dataDay)}
                         />
                     );
                 })}
