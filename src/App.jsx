@@ -5,7 +5,7 @@ import './scss/main.scss';
 
 import Header from "./components/Header.jsx";
 import AddForm from "./components/AddForm.jsx";
-import PlansSectionOld from "./components/PlansSection.jsx";
+import PlansSection from "./components/PlansSection.jsx";
 import Footer from "./components/Footer.jsx";
 
 class App extends React.Component {
@@ -13,12 +13,39 @@ class App extends React.Component {
         super(props);
         this.state = {
             openAddFormClicked: false,
+
+            idCounter: 0,
+
             // properties for taskObjToAdd
+            id: 0,
             taskName: "ble ble",
             taskPriority: 0,
-            dayIndex: 0,
             estimatedTime: 0,
-            tasks: []
+
+            // where to add
+            dayIndex: 0,
+
+            days: [
+                    [// day 0
+                        { // single task
+                        id: 0,
+                        taskName: "taskName",
+                        taskPriority: "3",
+                        estimatedTime: "4"
+                    }, {
+                        id: 1,
+                        taskName: "taskNameTest",
+                        taskPriority: "2",
+                        estimatedTime: "2"
+                    }],
+                    [], // day 2
+                    [],
+                    [],
+                    [],
+                    [],
+                    [] // day 6
+            ],
+            depot: [] // id of tasks to move
         };
 
         this.handleClick = this.handleClick.bind(this);
@@ -37,7 +64,7 @@ class App extends React.Component {
     handleT(event) {
        // event.preventDefault();
         if (event.keyCode === 84) {
-            console.log(this.state.tasks);
+            console.log("State na żądanie: ", this.state);
         }
     };
 
@@ -45,52 +72,59 @@ class App extends React.Component {
         this.setState({[event.target.name]: event.target.value});
         console.log("change ", event);
         console.log("state ", this.state);
-        //const {name, value} = event.target;
-        // this.setState({   //App.jsx:47 Uncaught TypeError: this.setState is not a function
-        //     [name]: value  //[event.target.name]: event.target.value
-        // });
     };
 
-    // handleSubmit() {
-    //
-    //     const taskArr = [];
-    //     taskArr.push(
-    //         {
-    //             taskName: this.state.taskName,
-    //             taskPriority: this.state.taskPriority,
-    //             value: this.state.value,
-    //             estimatedTime: this.state.estimatedTime
-    //         }
-    //     );
-    //     this.setState({ tasks: taskArr });
-    //     this.state.openAddFormClicked ? this.setState({openAddFormClicked: false}) : this.setState({openAddFormClicked: true});
-    //     console.warn("Obiekt do dodania", taskArr);
-    //     console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
-    //     console.info("tasks from state ", this.state.tasks);
-    // };
+    handleDelete(event) {
+        console.log("Skasujmy coś");
+    };
+
+    handleSelected() {
+        console.log("Zaznaczone");
+    };
 
     handleSubmit = (event) => {
-            event.preventDefault();
-            const taskArr = [];
-            taskArr.push(
-                {
-                    taskName: this.state.taskName,
-                    taskPriority: this.state.taskPriority,
-                    dayIndex: this.state.dayIndex,
-                    estimatedTime: this.state.estimatedTime
-                }
-            );
-            this.setState( prevState => ({
-                tasks: [...prevState.tasks, taskArr]
-            }));
-            this.state.openAddFormClicked ? this.setState({openAddFormClicked: false}) : this.setState({openAddFormClicked: true});
-            console.warn("Obiekt do dodania", taskArr);
+        event.preventDefault();
 
+        this.setState( prevState => {
+            console.warn(prevState);
+            const newDays = [...prevState.days];
+            const currentId = prevState.idCounter;
+
+            // -!!-> tworzymy wiele zmiennych, którym przypsiujemy wartości z obiektu
+            // leżące pod kluczami analogicznymi do nazwy zmiennej
+            const { idCounter: id, taskName, taskPriority, estimatedTime } = prevState;
+            // zapis równoważny:
+            // const taskName = prevState.taskName;
+            // const taskPriority = prevState.taskPriority;
+            // const estimatedTime = prevState.estimatedTime;
+
+
+
+
+            // -!!-> tworzymy nowy obiekt currentDay, w którym przypisujemy kluczom
+            // wartości zmiennych o takich samych nazwach jak klucze
+            const currentDay = { id, taskName, taskPriority, estimatedTime };
+            // zapis równoważyny:
+            // currentDay = {
+            //     taskName: taskName,
+            //     taskPriority: taskPriority
+            //     estimatedTime: estimatedTime
+            // }
+
+            console.error("Obiekt do dodania currentDay ", currentDay);
+            newDays[prevState.dayIndex].push(currentDay);
+            return ({
+                days: newDays,
+                idCounter: currentId + 1
+            })
+        });
+        this.state.openAddFormClicked ? this.setState({openAddFormClicked: false}) : this.setState({openAddFormClicked: true});
+        //console.warn("Obiekt do dodania", taskArr);
     };
 
     render() {
-        console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
-        console.info("tasks from state ", this.state.tasks);
+        console.log("-Days-", this.state.days);
+        //console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
 
         return (
             <div onKeyDown={this.handleT}>
@@ -99,14 +133,18 @@ class App extends React.Component {
                     data={this.state}
                 />
                 {this.state.openAddFormClicked ? <AddForm
-                    tasks={this.state.tasks}
+                    days={this.state.days}
                     handleSubmit={this.handleSubmit}
                     handleChange={this.handleChange}
                     taskName={this.state.taskName}
                     taskPriority={this.state.taskPriority}
                     dayIndex={this.state.dayIndex}
                     estimatedTime={this.state.estimatedTime}
-                /> : <PlansSectionOld />}
+                /> : <PlansSection
+                    days={this.state.days}
+                    handleDelete={this.handleDelete}
+                    handleSelected={this.handleSelected}
+                />}
                 <Footer />
             </div>
         )

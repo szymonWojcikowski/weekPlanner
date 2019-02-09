@@ -1,6 +1,7 @@
 import React from "react";
 
 import Task from "./Task.jsx";
+import PlansSection from "./PlansSection.jsx";
 
 class Day extends React.Component {
     constructor(props) {
@@ -25,6 +26,8 @@ class Day extends React.Component {
                             taskName={item.taskName}
                             taskPriority={item.taskPriority}
                             estimatedTime={item.estimatedTime}
+                            handleDelete={this.props.handleDelete}
+                            handleSelected={this.props.handleSelected}
                         />
                     );
                 })}
@@ -34,11 +37,3 @@ class Day extends React.Component {
 }
 
 export default Day;
-
-
-{/*if (1!==1) { //index == this.props.dataDay*/}
-    {/*console.log("jestem w warunku");*/}
-    {/*let holeDay = item;*/}
-    {/*console.log("Cały dzien ", holeDay);*/}
-    {/*return holeDay.map( item => {                   }*/}
-            {/*}*/}
