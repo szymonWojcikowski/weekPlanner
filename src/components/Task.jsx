@@ -16,8 +16,14 @@ const Task = (props) => {
         <li style={style}>
             <h1>{props.taskName}</h1>
             <p className="descr">{props.taskPriority}</p>
-            <button className="btn selected" onClick={props.handleSelected}><i className="fas fa-check" /></button>
-            <button className="btn delete" onClick={props.handleDelete}><i className="fas fa-times" /></button>
+            <button className="btn selected"
+                    onClick={props.handleSelected}>
+                        <i className="fas fa-check" />
+            </button>
+            <button className="btn delete"
+                    onClick={() => props.handleDelete(props.dataId)}>
+                        <i className="fas fa-times" />
+            </button>
         </li>
     )
 };

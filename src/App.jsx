@@ -26,24 +26,24 @@ class App extends React.Component {
             dayIndex: 0,
 
             days: [
-                    [// day 0
-                        { // single task
+                [// day 0
+                    { // single task
                         id: 0,
                         taskName: "taskName",
                         taskPriority: "3",
                         estimatedTime: "4"
                     }, {
-                        id: 1,
-                        taskName: "taskNameTest",
-                        taskPriority: "2",
-                        estimatedTime: "2"
-                    }],
-                    [], // day 2
-                    [],
-                    [],
-                    [],
-                    [],
-                    [] // day 6
+                    id: 1,
+                    taskName: "taskNameTest",
+                    taskPriority: "2",
+                    estimatedTime: "2"
+                }],
+                [], // day 2
+                [],
+                [],
+                [],
+                [],
+                [] // day 6
             ],
             depot: [] // id of tasks to move
         };
@@ -52,6 +52,8 @@ class App extends React.Component {
         this.handleT = this.handleT.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleChange = this.handleChange.bind(this);// this.state?
+        this.handleDelete = this.handleDelete.bind(this);
+        this.handleSelected = this.handleSelected.bind(this);
     };
 
     handleClick(event) {
@@ -62,7 +64,7 @@ class App extends React.Component {
     };
 
     handleT(event) {
-       // event.preventDefault();
+        // event.preventDefault();
         if (event.keyCode === 84) {
             console.log("State na żądanie: ", this.state);
         }
@@ -74,12 +76,41 @@ class App extends React.Component {
         console.log("state ", this.state);
     };
 
-    handleDelete(event) {
+    // to co niżej
+    // handleDelete = (a) => {
+    //     return (b) => {
+    //
+    //     }
+    // };
+
+    handleDelete = day => toDel =>  {
         console.log("Skasujmy coś");
+        console.log("Skasujmy coś, najlepiej ", event.target.parentElement.parentElement);
+        //const toDel = event.target.parentElement.parentElement.dataset.id;
+       // const day = event.target.parentElement.parentElement.parentElement.dataset.day;
+
+        this.setState( prevState => {
+            let newDays = [...prevState.days];
+            console.log(`Skasuj zadanie o id ${toDel} w dniu ${day}, możliwe dni ${newDays}`);
+            console.log("Nasz------", newDays[day], newDays, day, event.target);
+
+            // days[day].filter( item => !toDel.includes(item.id) );
+            newDays[day] = newDays[day].filter( item => item.id != toDel );
+            console.log("NEW days ", newDays);
+
+            // filter(item => !toDel.includes(item.id));
+
+            return ({
+                days: newDays
+            })
+        });
+
     };
 
-    handleSelected() {
+    handleSelected(event) {
         console.log("Zaznaczone");
+        console.log("zanzaczono ", event.target.parentElement.parentElement.dataset.id);
+        console.warn(this.state);
     };
 
     handleSubmit = (event) => {
@@ -97,8 +128,7 @@ class App extends React.Component {
             // const taskName = prevState.taskName;
             // const taskPriority = prevState.taskPriority;
             // const estimatedTime = prevState.estimatedTime;
-
-
+            console.log("Idiki: ", id);
 
 
             // -!!-> tworzymy nowy obiekt currentDay, w którym przypisujemy kluczom
@@ -113,6 +143,7 @@ class App extends React.Component {
 
             console.error("Obiekt do dodania currentDay ", currentDay);
             newDays[prevState.dayIndex].push(currentDay);
+
             return ({
                 days: newDays,
                 idCounter: currentId + 1
@@ -136,6 +167,7 @@ class App extends React.Component {
                     days={this.state.days}
                     handleSubmit={this.handleSubmit}
                     handleChange={this.handleChange}
+                    id={this.state.id}
                     taskName={this.state.taskName}
                     taskPriority={this.state.taskPriority}
                     dayIndex={this.state.dayIndex}

@@ -9,7 +9,7 @@ class PlansSection extends React.Component {
         super(props);
         this.state = {
             screenSize: window.innerWidth,
-            days: this.props.days
+            // days: this.props.days
 
         };
         this.handleLoad = this.handleLoad.bind(this);
@@ -24,14 +24,14 @@ class PlansSection extends React.Component {
 
     render() {
         const daysOfWeek = ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"];
-        console.log("render this.state.days in PlansSection", this.state.days);
+        console.log("render this.state.days in PlansSection", this.props.days);
         return (
             <section className="week" onLoad={this.handleLoad}>
                 {daysOfWeek.map((day, index) => {
                     return (<Day key={index}
                                  dataDay={index}
                                  day={day}
-                                 tasks={this.state.days[index]}
+                                 tasks={this.props.days[index]}
                                  handleDelete={this.props.handleDelete}
                                  handleSelected={this.props.handleSelected}
                             >

@@ -7,7 +7,7 @@ class Day extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
-            tasks: this.props.tasks,
+            // tasks: this.props.tasks,
             // monday: this.props[0].tasks
         };
     }
@@ -17,16 +17,17 @@ class Day extends React.Component {
         console.log("Tasks ", this.state.tasks);
         // console.log("state.tasks ", this.state.monday);
         return (
-            <ul className="day" data-day={this.props.dataDay}>
+            <ul className="day">
                 <span>{this.props.day}</span>
-                {this.state.tasks.map( (item, index) => {
+                {this.props.tasks.map( (item, index) => {
                     return (
                         <Task
                             key={index}
+                            dataId={item.id}
                             taskName={item.taskName}
                             taskPriority={item.taskPriority}
                             estimatedTime={item.estimatedTime}
-                            handleDelete={this.props.handleDelete}
+                            handleDelete={this.props.handleDelete(this.props.dataDay)}
                             handleSelected={this.props.handleSelected}
                         />
                     );
