@@ -28,19 +28,20 @@ class App extends React.Component {
 
             days: [
                 [// day 0
-                    { // single task
-                        id: 0,
-                        taskName: "taskName",
-                        taskPriority: "3",
-                        estimatedTime: "4",
-                        selected: false,
-                    }, {
-                    id: 1,
-                    taskName: "taskNameTest",
-                    taskPriority: "2",
-                    estimatedTime: "2",
-                    selected: true,
-                }],
+                //     { // single task
+                //         id: 0,
+                //         taskName: "taskName",
+                //         taskPriority: "3",
+                //         estimatedTime: "4",
+                //         selected: false,
+                //     }, {
+                //     id: 1,
+                //     taskName: "taskNameTest",
+                //     taskPriority: "2",
+                //     estimatedTime: "2",
+                //     selected: true,
+                // }
+                ],
                 [], // day 2
                 [],
                 [],
@@ -114,7 +115,7 @@ class App extends React.Component {
 
         this.setState( prevState => {
             let toAction = [...prevState.days];
-            let selectedTask = toAction[day].filter( item => item.id == toPush );
+            let selectedTask = toAction[day].find( item => item.id == toPush );
             console.warn("===== Selected to action before =====", selectedTask, toAction, day, event.target);
             selectedTask.selected === true ? selectedTask.selected = false : selectedTask.selected = true;
             console.warn("===== Selected to action after=====", selectedTask);
@@ -123,20 +124,21 @@ class App extends React.Component {
             let x = toAction.map( day => {
                 console.log("DAY:", day);
                 let y = day.map( item => {
-                    console.log("ITEM:", item);
-                    if (item.id == selectedTask.id) {
-                        item = selectedTask;
-                        return item;
+                    console.log("ITEM:", item.id, selectedTask.id);
+                    if (item.id === selectedTask.id) {
+                        console.log("Warunek:", item);
+
+                        return selectedTask;
                     }
                     return item;
                 });
-                return day;
+                return y;
             });
             console.log("toAction po map", x);
             //---------------------
 
             return ({
-                depot: [...prevState.depot, ...toAction]
+                days: x
             })
         });
     };
