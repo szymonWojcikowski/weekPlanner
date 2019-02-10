@@ -18,6 +18,12 @@ const MoveBackward = (props) => {
     )
 };
 
+const Save = (props) => {
+    return (
+        <button id="save" className="btn" onClick={props.save}>Save</button>
+    )
+};
+
 
 
 const TaskCounter = () => {
@@ -35,8 +41,9 @@ const Footer = (props) => {
         <footer>
             <p>&copy;Copyright 2019</p>
             <RemoveFinishedTasksButton removeSelected={props.removeSelected}/>
-            <MoveBackward moveBackward={props.moveBackward} />
-            <MoveForward moveForward={props.moveForward} />
+            <MoveBackward moveBackward={() => props.moveTask(true)} />
+            <MoveForward moveForward={() => props.moveTask(false)} />
+            <Save save={props.save} />
             <TaskCounter />
         </footer>
     )

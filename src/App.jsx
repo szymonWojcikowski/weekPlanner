@@ -53,8 +53,8 @@ class App extends React.Component {
         this.handleDelete = this.handleDelete.bind(this);
         this.handleSelected = this.handleSelected.bind(this);
         this.removeSelected = this.removeSelected.bind(this);
-        this.moveForward = this.moveForward.bind(this);
-        this.moveBackward = this.moveBackward.bind(this);
+        this.saveTaskListToLocalStorage = this.saveTaskListToLocalStorage.bind(this);
+        this.clearLocalStorage = this.clearLocalStorage.bind(this);
     };
 
     handleClick(event) {
@@ -157,11 +157,6 @@ class App extends React.Component {
         });
     };
 
-
-
-
-
-
     // handleSelected2 = day => toPush => {
     //     console.log("Zaznaczone");
     //
@@ -222,54 +217,41 @@ class App extends React.Component {
         //console.warn("Obiekt do dodania", taskArr);
     };
 
-    moveForward() {
-        console.log("go to next day");
-        this.setState( prevState => {
-                let newDays = [...prevState.days];
-                let toMoveForward = [];
-                newDays = newDays.map( (day, index) => {
-                    let newDay = day.filter( task => task.selected != true);
-                    newDay = [...newDay, ...toMoveForward];
-
-                    let toMove = day.filter( task => task.selected == true);
-                    toMoveForward = [];
-                    toMoveForward.push(...toMove);
-                    toMove.map( task => task.selected = false);
-                    return newDay;
-                });
-                console.log("Moving tasks newDays ", newDays);
-                return ({
-                    days: newDays
-                })
-            }
-        );
-    }
-
-    moveBackward() {
+    moveTask = (backward) => { // backward === true
         console.log("go to day before");
         this.setState( prevState => {
                 let newDays = [...prevState.days];
-                newDays.reverse();
+                backward ? newDays.reverse() : newDays;
                 console.log("REVERSED", newDays);
-                let toMoveForward = [];
+                let toMoveTab = [];
                 newDays = newDays.map( (day, index) => {
                     let newDay = day.filter( task => task.selected != true);
-                    newDay = [...newDay, ...toMoveForward];
+                    newDay = [...newDay, ...toMoveTab];
 
                     let toMove = day.filter( task => task.selected == true);
-                    toMoveForward = [];
-                    toMoveForward.push(...toMove);
+                    toMoveTab = [];
+                    toMoveTab.push(...toMove);
                     toMove.map( task => task.selected = false);
                     return newDay;
                 });
                 console.log("Moving tasks newDays ", newDays);
-                newDays.reverse();
+                backward ? newDays.reverse() : newDays;
                 return ({
                     days: newDays
                 })
             }
         );
-    }
+    };
+
+    clearLocalStorage() {
+        localStorage.clear();
+    };
+
+    saveTaskListToLocalStorage() {
+        this.clearLocalStorage();
+        localStorage.setItem("tasks", JSON.stringify(this.state.days));
+        localStorage.setItem("idCounter", JSON.stringify(this.state.idCounter));
+    };
 
 
 
@@ -303,6 +285,8 @@ class App extends React.Component {
                     removeSelected={this.removeSelected}
                     moveForward={this.moveForward}
                     moveBackward={this.moveBackward}
+                    moveTask={this.moveTask}
+                    save={this.saveTaskListToLocalStorage}
                 />
             </div>
         )
