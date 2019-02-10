@@ -1,20 +1,24 @@
 import React from "react";
 
-const RemoveFinishedTasksButton = () => {
-    // const removeFinishedTasksBtn = (function (daysToRefreshTab) {
-    //     let doneTasks = doneTaskTabPreparation();
-    //     let dToRefr = daysToRefresh(doneTasks);
-    //     deleteTaskObjFromTab(doneTasks);
-    //     taskListRefresh(dToRefr);
-    //     //TaskCounterRefresh();
-    // })();
-
-    const removeFinishedTasks = () => console.log("click on remove");
-
+const RemoveFinishedTasksButton = (props) => {
     return (
-        <button id="removeFinishedTasksButton" className="btn" onClick={removeFinishedTasks}>Remove selected</button>
+        <button id="removeFinishedTasksButton" className="btn" onClick={props.removeSelected}>Remove selected</button>
     )
 };
+
+const MoveForward = (props) => {
+    return (
+        <button id="moveToAnotherDay" className="btn" onClick={props.moveForward}>Move Forward</button>
+    )
+};
+
+const MoveBackward = (props) => {
+    return (
+        <button id="moveToDayBefore" className="btn" onClick={props.moveBackward}>Move Backward</button>
+    )
+};
+
+
 
 const TaskCounter = () => {
     return (
@@ -26,11 +30,13 @@ const TaskCounter = () => {
 };
 
 
-const Footer = () => {
+const Footer = (props) => {
     return (
         <footer>
-            <p>&copy;Copyright 2018</p>
-            <RemoveFinishedTasksButton />
+            <p>&copy;Copyright 2019</p>
+            <RemoveFinishedTasksButton removeSelected={props.removeSelected}/>
+            <MoveBackward moveBackward={props.moveBackward} />
+            <MoveForward moveForward={props.moveForward} />
             <TaskCounter />
         </footer>
     )

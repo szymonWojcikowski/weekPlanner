@@ -34,13 +34,7 @@ class App extends React.Component {
                 //         taskPriority: "3",
                 //         estimatedTime: "4",
                 //         selected: false,
-                //     }, {
-                //     id: 1,
-                //     taskName: "taskNameTest",
-                //     taskPriority: "2",
-                //     estimatedTime: "2",
-                //     selected: true,
-                // }
+                //     }
                 ],
                 [], // day 2
                 [],
@@ -58,6 +52,9 @@ class App extends React.Component {
         this.handleChange = this.handleChange.bind(this);// this.state?
         this.handleDelete = this.handleDelete.bind(this);
         this.handleSelected = this.handleSelected.bind(this);
+        this.removeSelected = this.removeSelected.bind(this);
+        this.moveForward = this.moveForward.bind(this);
+        this.moveBackward = this.moveBackward.bind(this);
     };
 
     handleClick(event) {
@@ -86,6 +83,23 @@ class App extends React.Component {
     //
     //     }
     // };
+
+    removeSelected(event) {
+        console.log("removing selected");
+        this.setState( prevState => {
+            let newDays = [...prevState.days];
+            newDays = newDays.map( day => {
+                let newD = day.filter( task => task.selected != true);
+                return newD;
+            });
+            console.log("REM newDays ", newDays);
+            return ({
+                days: newDays
+            })
+            }
+        );
+    }
+
 
     handleDelete = day => toDel =>  {
         console.log("Skasujmy coś");
@@ -142,6 +156,9 @@ class App extends React.Component {
             })
         });
     };
+
+
+
 
 
 
@@ -205,6 +222,57 @@ class App extends React.Component {
         //console.warn("Obiekt do dodania", taskArr);
     };
 
+    moveForward() {
+        console.log("go to next day");
+        this.setState( prevState => {
+                let newDays = [...prevState.days];
+                let toMoveForward = [];
+                newDays = newDays.map( (day, index) => {
+                    let newDay = day.filter( task => task.selected != true);
+                    newDay = [...newDay, ...toMoveForward];
+
+                    let toMove = day.filter( task => task.selected == true);
+                    toMoveForward = [];
+                    toMoveForward.push(...toMove);
+                    toMove.map( task => task.selected = false);
+                    return newDay;
+                });
+                console.log("Moving tasks newDays ", newDays);
+                return ({
+                    days: newDays
+                })
+            }
+        );
+    }
+
+    moveBackward() {
+        console.log("go to day before");
+        this.setState( prevState => {
+                let newDays = [...prevState.days];
+                newDays.reverse();
+                console.log("REVERSED", newDays);
+                let toMoveForward = [];
+                newDays = newDays.map( (day, index) => {
+                    let newDay = day.filter( task => task.selected != true);
+                    newDay = [...newDay, ...toMoveForward];
+
+                    let toMove = day.filter( task => task.selected == true);
+                    toMoveForward = [];
+                    toMoveForward.push(...toMove);
+                    toMove.map( task => task.selected = false);
+                    return newDay;
+                });
+                console.log("Moving tasks newDays ", newDays);
+                newDays.reverse();
+                return ({
+                    days: newDays
+                })
+            }
+        );
+    }
+
+
+
     render() {
         console.log("-Days-", this.state.days);
         console.log("-Depot-", this.state.depot);
@@ -231,7 +299,11 @@ class App extends React.Component {
                     handleDelete={this.handleDelete}
                     handleSelected={this.handleSelected}
                 />}
-                <Footer />
+                <Footer
+                    removeSelected={this.removeSelected}
+                    moveForward={this.moveForward}
+                    moveBackward={this.moveBackward}
+                />
             </div>
         )
     }
