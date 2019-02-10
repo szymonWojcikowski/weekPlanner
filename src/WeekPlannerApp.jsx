@@ -8,7 +8,7 @@ import AddForm from "./components/AddForm.jsx";
 import PlansSection from "./components/PlansSection.jsx";
 import Footer from "./components/Footer.jsx";
 
-class App extends React.Component {
+class WeekPlannerApp extends React.Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -297,7 +297,7 @@ class App extends React.Component {
 document.addEventListener('DOMContentLoaded',
     function(){
         ReactDOM.render(
-            <App />,
+            <WeekPlannerApp />,
             document.getElementById('app')
         );
     }

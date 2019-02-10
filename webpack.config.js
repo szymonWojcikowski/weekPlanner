@@ -2,7 +2,7 @@ const HtmlWebPackPlugin = require("html-webpack-plugin");
 
 module.exports = {
     mode: 'development',
-    entry: "./src/App.jsx",
+    entry: "./src/WeekPlannerApp.jsx",
     watch: true,
     devtool: "source-map",
     module: {

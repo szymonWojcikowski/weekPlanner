@@ -17,7 +17,7 @@ class Day extends React.Component {
         return (
             <ul className="day">
                 <span>{this.props.day}</span>
-                {this.props.tasks.map( (item, index) => {
+                {this.props.tasks.sort( (a, b) => b.taskPriority - a.taskPriority).map( (item, index) => {
                     return (
                         <Task
                             key={index}
