@@ -21,6 +21,7 @@ class App extends React.Component {
             taskName: "ble ble",
             taskPriority: 0,
             estimatedTime: 0,
+            selected: false,
 
             // where to add
             dayIndex: 0,
@@ -31,12 +32,14 @@ class App extends React.Component {
                         id: 0,
                         taskName: "taskName",
                         taskPriority: "3",
-                        estimatedTime: "4"
+                        estimatedTime: "4",
+                        selected: false,
                     }, {
                     id: 1,
                     taskName: "taskNameTest",
                     taskPriority: "2",
-                    estimatedTime: "2"
+                    estimatedTime: "2",
+                    selected: true,
                 }],
                 [], // day 2
                 [],
@@ -108,23 +111,57 @@ class App extends React.Component {
 
     handleSelected = day => toPush => {
         console.log("Zaznaczone");
-        //console.log("zanzaczono ", event.target.parentElement.parentElement.dataset.id);
-        console.info(this.state.depot);
-
 
         this.setState( prevState => {
-            let toDepot = prevState.days;
+            let toAction = [...prevState.days];
+            let selectedTask = toAction[day].filter( item => item.id == toPush );
+            console.warn("===== Selected to action before =====", selectedTask, toAction, day, event.target);
+            selectedTask.selected === true ? selectedTask.selected = false : selectedTask.selected = true;
+            console.warn("===== Selected to action after=====", selectedTask);
 
-            toDepot = toDepot[day].filter( item => item.id == toPush );
-
-            console.warn("Selected to depot------ /n ::::", toDepot[day], toDepot, day, event.target);
-
+            //----New--setting--task--to--selected----
+            let x = toAction.map( day => {
+                console.log("DAY:", day);
+                let y = day.map( item => {
+                    console.log("ITEM:", item);
+                    if (item.id == selectedTask.id) {
+                        item = selectedTask;
+                        return item;
+                    }
+                    return item;
+                });
+                return day;
+            });
+            console.log("toAction po map", x);
+            //---------------------
 
             return ({
-                 depot: [...prevState.depot, ...toDepot]
+                depot: [...prevState.depot, ...toAction]
             })
         });
     };
+
+
+
+    // handleSelected2 = day => toPush => {
+    //     console.log("Zaznaczone");
+    //
+    //     this.setState( prevState => {
+    //         let toDepot = prevState.days;
+    //         toDepot = toDepot[day].filter( item => item.id == toPush );
+    //         console.warn("Selected to depot------ /n ::::", toDepot[day], toDepot, day, event.target);
+    //
+    //         //----New--setting--task--to--selected----
+    //         toDepot.map( item => {
+    //             item.selected === true ? item.selected = false : item.selected = true;
+    //         });
+    //         //---------------------
+    //
+    //         return ({
+    //              depot: [...prevState.depot, ...toDepot]
+    //         })
+    //     });
+    // };
 
     handleSubmit = (event) => {
         event.preventDefault();
@@ -136,7 +173,7 @@ class App extends React.Component {
 
             // -!!-> tworzymy wiele zmiennych, którym przypsiujemy wartości z obiektu
             // leżące pod kluczami analogicznymi do nazwy zmiennej
-            const { idCounter: id, taskName, taskPriority, estimatedTime } = prevState;
+            const { idCounter: id, taskName, taskPriority, estimatedTime, selected } = prevState;
             // zapis równoważny:
             // const taskName = prevState.taskName;
             // const taskPriority = prevState.taskPriority;
@@ -146,7 +183,7 @@ class App extends React.Component {
 
             // -!!-> tworzymy nowy obiekt currentDay, w którym przypisujemy kluczom
             // wartości zmiennych o takich samych nazwach jak klucze
-            const currentDay = { id, taskName, taskPriority, estimatedTime };
+            const currentDay = { id, taskName, taskPriority, estimatedTime, selected };
             // zapis równoważyny:
             // currentDay = {
             //     taskName: taskName,

@@ -25,6 +25,7 @@ class Day extends React.Component {
                             taskName={item.taskName}
                             taskPriority={item.taskPriority}
                             estimatedTime={item.estimatedTime}
+                            selected={item.selected}
                             handleDelete={this.props.handleDelete(this.props.dataDay)}
                             handleSelected={this.props.handleSelected(this.props.dataDay)}
                         />

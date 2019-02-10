@@ -13,7 +13,7 @@ const Task = (props) => {
     };
 
     return (
-        <li style={style}>
+        <li style={style} className={props.selected ? "done" : undefined}>
             <h1>{props.taskName}</h1>
             <p className="descr">{props.taskPriority}</p>
             <button className="btn selected"
