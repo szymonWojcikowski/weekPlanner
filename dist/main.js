@@ -81,10 +81,121 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./src/App.jsx");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./src/WeekPlannerApp.jsx");
 /******/ })
 /************************************************************************/
 /******/ ({
+
+/***/ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/scss/main.scss":
+/*!***********************************************************************************************************!*\
+  !*** ./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/scss/main.scss ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../node_modules/css-loader/dist/runtime/api.js */ "./node_modules/css-loader/dist/runtime/api.js")(false);
+// Module
+exports.push([module.i, "/* http://meyerweb.com/eric/tools/css/reset/ \n   v2.0 | 20110126\n   License: none (public domain)\n*/\nhtml, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code, del, dfn, em, img, ins, kbd, q, s, samp, small, strike, strong, sub, sup, tt, var, b, u, i, center, dl, dt, dd, ol, ul, li, fieldset, form, label, legend, table, caption, tbody, tfoot, thead, tr, th, td, article, aside, canvas, details, embed, figure, figcaption, footer, header, hgroup, menu, nav, output, ruby, section, summary, time, mark, audio, video {\n  margin: 0;\n  padding: 0;\n  border: 0;\n  font-size: 100%;\n  font: inherit;\n  vertical-align: baseline; }\n\n/* HTML5 display-role reset for older browsers */\narticle, aside, details, figcaption, figure, footer, header, hgroup, menu, nav, section {\n  display: block; }\n\nbody {\n  line-height: 1; }\n\nol, ul {\n  list-style: none; }\n\nblockquote, q {\n  quotes: none; }\n\nblockquote:before, blockquote:after {\n  content: '';\n  content: none; }\n\nq:before, q:after {\n  content: '';\n  content: none; }\n\ntable {\n  border-collapse: collapse;\n  border-spacing: 0; }\n\nhtml {\n  font-size: 10px; }\n\n* {\n  box-sizing: border-box;\n  font-family: 'Bangers', cursive; }\n\nbody {\n  background-color: #f3e8ee;\n  height: 100vh;\n  overflow: hidden;\n  font-family: 'Bangers', cursive;\n  letter-spacing: 1.2rem; }\n\n.btn {\n  min-height: 2rem;\n  min-width: 2rem;\n  border: 2px outset #475b63;\n  font-family: 'Bangers', cursive;\n  font-weight: 100;\n  font-size: 1.5rem;\n  letter-spacing: 0.2rem;\n  background-color: transparent;\n  cursor: pointer; }\n\nheader {\n  display: flex;\n  background-color: #bce784;\n  border-bottom: 4px dashed #475b63;\n  height: 10vh; }\n  header h1 {\n    width: calc(100vw / 7 * 2);\n    padding-left: 2rem;\n    line-height: 10vh;\n    font-size: 3rem;\n    letter-spacing: 1rem;\n    color: #348aa7; }\n  header input {\n    width: calc(100vw / 7 * 1);\n    padding: 0 1rem;\n    border: 2px outset #475b63; }\n    header input::placeholder {\n      font-family: 'Bangers', cursive;\n      font-weight: 100;\n      font-size: 1.5rem;\n      letter-spacing: 0.2rem; }\n  header #outputHolder {\n    position: relative;\n    height: 100%;\n    line-height: 100%; }\n    header #outputHolder #remainingChars {\n      display: inline;\n      position: absolute;\n      top: 0.5rem;\n      bottom: 0.5rem;\n      padding: 0.5vh;\n      vertical-align: middle;\n      border-left: 2px dashed #74909c;\n      color: #555555;\n      cursor: pointer;\n      margin-left: -5.5rem;\n      font-family: 'Bangers', cursive;\n      font-weight: 100;\n      font-size: 1.5rem;\n      letter-spacing: 0rem;\n      line-height: 5.71429vh; }\n    header #outputHolder #remainingChars.error {\n      color: #9e2b25; }\n  header .btn {\n    width: calc(100vw / 7 * 1); }\n  header #addTaskButton {\n    background-color: #9e2b25;\n    color: #f3e8ee; }\n  header #daySelect {\n    padding-left: 1rem; }\n    header #daySelect option {\n      letter-spacing: 0.2rem; }\n\nsection.week {\n  height: 80vh;\n  display: flex; }\n  section.week .day {\n    width: 100%;\n    height: 80vh;\n    border-right: 4px dotted #475b63;\n    text-orientation: upright;\n    color: rgba(34, 34, 34, 0.4); }\n    @media (min-width: 768px) and (max-width: 1023px) {\n      section.week .day {\n        width: calc(100vw / 7); } }\n    @media (min-width: 1024px) {\n      section.week .day {\n        width: calc(100vw / 7); } }\n    section.week .day span {\n      position: absolute;\n      top: 12vh;\n      margin-left: 1vw;\n      transform-origin: top left;\n      transform: rotate(30deg); }\n    section.week .day li {\n      position: relative;\n      height: 8.33333%;\n      box-sizing: border-box;\n      border-bottom: 2px dotted #475b63;\n      background-color: #225a6d;\n      writing-mode: horizontal-tb; }\n      section.week .day li h1 {\n        width: calc(100% - 10vh);\n        overflow: hidden;\n        box-sizing: border-box;\n        padding: 0.5vh 1vh 0.5vh;\n        font-size: 1.2rem;\n        font-weight: 100;\n        line-height: 1.5rem;\n        letter-spacing: 0.3rem;\n        color: #f3e8ee; }\n      section.week .day li .descr {\n        width: calc(100% - 10vh);\n        padding: 0.5vh 1vw 0.5vh;\n        font-size: 1rem;\n        font-weight: 100;\n        line-height: 1.2rem;\n        letter-spacing: 0.1rem;\n        color: #f3e8ee; }\n      section.week .day li button {\n        position: absolute;\n        bottom: 0.2rem;\n        float: right;\n        font-family: 'Bangers', cursive;\n        min-height: 20px;\n        min-width: 20px;\n        height: 4vh;\n        width: 4vh;\n        text-align: center;\n        padding: 0;\n        border: 0px;\n        outline-width: 0; }\n        section.week .day li button .fas {\n          display: inline;\n          line-height: 100%;\n          color: #f3e8ee; }\n      section.week .day li .btn.delete {\n        right: 0vh; }\n      section.week .day li .btn.selected {\n        right: 6vh; }\n    section.week .day .done {\n      background-color: #649a1e; }\n\n.addForm {\n  height: 80vh;\n  min-width: 32rem;\n  max-width: 64rem;\n  margin: 1vh auto;\n  display: flex;\n  flex-direction: column;\n  justify-content: space-evenly;\n  align-self: center; }\n  .addForm input {\n    display: block;\n    width: 100%; }\n\nfooter {\n  background-color: #222222;\n  color: #f3e8ee;\n  border-top: 4px dashed #475b63;\n  height: 10vh;\n  padding-left: 2vw; }\n  footer p {\n    line-height: 10vh;\n    font-size: 1.5rem;\n    letter-spacing: 1.2rem;\n    float: left; }\n  footer span {\n    line-height: 10vh;\n    font-size: 1.5rem;\n    float: right;\n    padding-right: 2vw; }\n  footer #removeFinishedTasksButton {\n    width: calc(100vw / 7 * 1);\n    line-height: 10vh;\n    background-color: #348aa7;\n    float: right; }\n", ""]);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/dist/runtime/api.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/css-loader/dist/runtime/api.js ***!
+  \*****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+/*
+  MIT License http://www.opensource.org/licenses/mit-license.php
+  Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function (useSourceMap) {
+  var list = []; // return the list of modules as css string
+
+  list.toString = function toString() {
+    return this.map(function (item) {
+      var content = cssWithMappingToString(item, useSourceMap);
+
+      if (item[2]) {
+        return '@media ' + item[2] + '{' + content + '}';
+      } else {
+        return content;
+      }
+    }).join('');
+  }; // import a list of modules into the list
+
+
+  list.i = function (modules, mediaQuery) {
+    if (typeof modules === 'string') {
+      modules = [[null, modules, '']];
+    }
+
+    var alreadyImportedModules = {};
+
+    for (var i = 0; i < this.length; i++) {
+      var id = this[i][0];
+
+      if (id != null) {
+        alreadyImportedModules[id] = true;
+      }
+    }
+
+    for (i = 0; i < modules.length; i++) {
+      var item = modules[i]; // skip already imported module
+      // this implementation is not 100% perfect for weird media query combinations
+      // when a module is imported multiple times with different media queries.
+      // I hope this will never occur (Hey this way we have smaller bundles)
+
+      if (item[0] == null || !alreadyImportedModules[item[0]]) {
+        if (mediaQuery && !item[2]) {
+          item[2] = mediaQuery;
+        } else if (mediaQuery) {
+          item[2] = '(' + item[2] + ') and (' + mediaQuery + ')';
+        }
+
+        list.push(item);
+      }
+    }
+  };
+
+  return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+  var content = item[1] || '';
+  var cssMapping = item[3];
+
+  if (!cssMapping) {
+    return content;
+  }
+
+  if (useSourceMap && typeof btoa === 'function') {
+    var sourceMapping = toComment(cssMapping);
+    var sourceURLs = cssMapping.sources.map(function (source) {
+      return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */';
+    });
+    return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+  }
+
+  return [content].join('\n');
+} // Adapted from convert-source-map (MIT)
+
+
+function toComment(sourceMap) {
+  // eslint-disable-next-line no-undef
+  var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+  var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+  return '/*# ' + data + ' */';
+}
+
+/***/ }),
 
 /***/ "./node_modules/prop-types/checkPropTypes.js":
 /*!***************************************************!*\
@@ -23656,6 +23767,515 @@ if (false) {} else {
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/lib/addStyles.js":
+/*!****************************************************!*\
+  !*** ./node_modules/style-loader/lib/addStyles.js ***!
+  \****************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getTarget = function (target, parent) {
+  if (parent){
+    return parent.querySelector(target);
+  }
+  return document.querySelector(target);
+};
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(target, parent) {
+                // If passing function in options, then use it for resolve "head" element.
+                // Useful for Shadow Root style i.e
+                // {
+                //   insertInto: function () { return document.querySelector("#foo").shadowRoot }
+                // }
+                if (typeof target === 'function') {
+                        return target();
+                }
+                if (typeof memo[target] === "undefined") {
+			var styleTarget = getTarget.call(this, target, parent);
+			// Special case to return head of iframe instead of iframe itself
+			if (window.HTMLIFrameElement && styleTarget instanceof window.HTMLIFrameElement) {
+				try {
+					// This will throw an exception if access to iframe is blocked
+					// due to cross-origin restrictions
+					styleTarget = styleTarget.contentDocument.head;
+				} catch(e) {
+					styleTarget = null;
+				}
+			}
+			memo[target] = styleTarget;
+		}
+		return memo[target]
+	};
+})();
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(/*! ./urls */ "./node_modules/style-loader/lib/urls.js");
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton && typeof options.singleton !== "boolean") options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+        if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else if (typeof options.insertAt === "object" && options.insertAt.before) {
+		var nextSibling = getElement(options.insertAt.before, target);
+		target.insertBefore(style, nextSibling);
+	} else {
+		throw new Error("[Style Loader]\n\n Invalid value for parameter 'insertAt' ('options.insertAt') found.\n Must be 'top', 'bottom', or Object.\n (https://github.com/webpack-contrib/style-loader#insertat)\n");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+
+	if(options.attrs.nonce === undefined) {
+		var nonce = getNonce();
+		if (nonce) {
+			options.attrs.nonce = nonce;
+		}
+	}
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	if(options.attrs.type === undefined) {
+		options.attrs.type = "text/css";
+	}
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function getNonce() {
+	if (false) {}
+
+	return __webpack_require__.nc;
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = typeof options.transform === 'function'
+		 ? options.transform(obj.css) 
+		 : options.transform.default(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/style-loader/lib/urls.js":
+/*!***********************************************!*\
+  !*** ./node_modules/style-loader/lib/urls.js ***!
+  \***********************************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/|\s*$)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+
 /***/ "./node_modules/webpack/buildin/global.js":
 /*!***********************************!*\
   !*** (webpack)/buildin/global.js ***!
@@ -23687,10 +24307,10 @@ module.exports = g;
 
 /***/ }),
 
-/***/ "./src/App.jsx":
-/*!*********************!*\
-  !*** ./src/App.jsx ***!
-  \*********************/
+/***/ "./src/WeekPlannerApp.jsx":
+/*!********************************!*\
+  !*** ./src/WeekPlannerApp.jsx ***!
+  \********************************/
 /*! no exports provided */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -23700,8 +24320,678 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
 /* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./scss/main.scss */ "./src/scss/main.scss");
+/* harmony import */ var _scss_main_scss__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_scss_main_scss__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var _components_Header_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Header.jsx */ "./src/components/Header.jsx");
+/* harmony import */ var _components_AddForm_jsx__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/AddForm.jsx */ "./src/components/AddForm.jsx");
+/* harmony import */ var _components_PlansSection_jsx__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/PlansSection.jsx */ "./src/components/PlansSection.jsx");
+/* harmony import */ var _components_Footer_jsx__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Footer.jsx */ "./src/components/Footer.jsx");
 
 
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _toConsumableArray(arr) { return _arrayWithoutHoles(arr) || _iterableToArray(arr) || _nonIterableSpread(); }
+
+function _nonIterableSpread() { throw new TypeError("Invalid attempt to spread non-iterable instance"); }
+
+function _iterableToArray(iter) { if (Symbol.iterator in Object(iter) || Object.prototype.toString.call(iter) === "[object Arguments]") return Array.from(iter); }
+
+function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = new Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+
+
+
+
+
+
+
+
+var WeekPlannerApp =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(WeekPlannerApp, _React$Component);
+
+  function WeekPlannerApp(props) {
+    var _this;
+
+    _classCallCheck(this, WeekPlannerApp);
+
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(WeekPlannerApp).call(this, props));
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleDelete", function (day) {
+      return function (toDel) {
+        console.log("Skasujmy coś"); //console.log("Skasujmy coś, najlepiej ", event.target.parentElement.parentElement);
+        //const toDel = event.target.parentElement.parentElement.dataset.id;
+        // const day = event.target.parentElement.parentElement.parentElement.dataset.day;
+
+        _this.setState(function (prevState) {
+          var newDays = _toConsumableArray(prevState.days);
+
+          console.log("Skasuj zadanie o id ".concat(toDel, " w dniu ").concat(day, ", mo\u017Cliwe dni ").concat(newDays));
+          console.log("Nasz------", newDays[day], newDays, day, event.target); // days[day].filter( item => !toDel.includes(item.id) );
+
+          newDays[day] = newDays[day].filter(function (item) {
+            return item.id != toDel;
+          });
+          console.log("NEW days ", newDays); // filter(item => !toDel.includes(item.id));
+
+          return {
+            days: newDays
+          };
+        });
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSelected", function (day) {
+      return function (toPush) {
+        console.log("Zaznaczone");
+
+        _this.setState(function (prevState) {
+          var toAction = _toConsumableArray(prevState.days);
+
+          var selectedTask = toAction[day].find(function (item) {
+            return item.id == toPush;
+          });
+          console.warn("===== Selected to action before =====", selectedTask, toAction, day, event.target);
+          selectedTask.selected === true ? selectedTask.selected = false : selectedTask.selected = true;
+          console.warn("===== Selected to action after=====", selectedTask); //----New--setting--task--to--selected----
+
+          var x = toAction.map(function (day) {
+            console.log("DAY:", day);
+            var y = day.map(function (item) {
+              console.log("ITEM:", item.id, selectedTask.id);
+
+              if (item.id === selectedTask.id) {
+                console.log("Warunek:", item);
+                return selectedTask;
+              }
+
+              return item;
+            });
+            return y;
+          });
+          console.log("toAction po map", x); //---------------------
+
+          return {
+            days: x
+          };
+        });
+      };
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "handleSubmit", function (event) {
+      event.preventDefault();
+
+      _this.setState(function (prevState) {
+        console.warn(prevState);
+
+        var newDays = _toConsumableArray(prevState.days);
+
+        var currentId = prevState.idCounter; // -!!-> tworzymy wiele zmiennych, którym przypsiujemy wartości z obiektu
+        // leżące pod kluczami analogicznymi do nazwy zmiennej
+
+        var id = prevState.idCounter,
+            taskName = prevState.taskName,
+            taskPriority = prevState.taskPriority,
+            estimatedTime = prevState.estimatedTime,
+            selected = prevState.selected; // zapis równoważny:
+        // const taskName = prevState.taskName;
+        // const taskPriority = prevState.taskPriority;
+        // const estimatedTime = prevState.estimatedTime;
+
+        console.log("Idiki: ", id); // -!!-> tworzymy nowy obiekt currentDay, w którym przypisujemy kluczom
+        // wartości zmiennych o takich samych nazwach jak klucze
+
+        var currentDay = {
+          id: id,
+          taskName: taskName,
+          taskPriority: taskPriority,
+          estimatedTime: estimatedTime,
+          selected: selected
+        }; // zapis równoważyny:
+        // currentDay = {
+        //     taskName: taskName,
+        //     taskPriority: taskPriority
+        //     estimatedTime: estimatedTime
+        // }
+
+        console.error("Obiekt do dodania currentDay ", currentDay);
+        newDays[prevState.dayIndex].push(currentDay);
+        return {
+          days: newDays,
+          idCounter: currentId + 1
+        };
+      });
+
+      _this.state.openAddFormClicked ? _this.setState({
+        openAddFormClicked: false
+      }) : _this.setState({
+        openAddFormClicked: true
+      }); //console.warn("Obiekt do dodania", taskArr);
+    });
+
+    _defineProperty(_assertThisInitialized(_assertThisInitialized(_this)), "moveTask", function (backward) {
+      // backward === true
+      console.log("go to day before");
+
+      _this.setState(function (prevState) {
+        var newDays = _toConsumableArray(prevState.days);
+
+        backward ? newDays.reverse() : newDays;
+        console.log("REVERSED", newDays);
+        var toMoveTab = [];
+        newDays = newDays.map(function (day, index) {
+          var _toMoveTab;
+
+          var newDay = day.filter(function (task) {
+            return task.selected != true;
+          });
+          newDay = [].concat(_toConsumableArray(newDay), _toConsumableArray(toMoveTab));
+          var toMove = day.filter(function (task) {
+            return task.selected == true;
+          });
+          toMoveTab = [];
+
+          (_toMoveTab = toMoveTab).push.apply(_toMoveTab, _toConsumableArray(toMove));
+
+          toMove.map(function (task) {
+            return task.selected = false;
+          });
+          return newDay;
+        });
+        console.log("Moving tasks newDays ", newDays);
+        backward ? newDays.reverse() : newDays;
+        return {
+          days: newDays
+        };
+      });
+    });
+
+    _this.state = {
+      openAddFormClicked: false,
+      idCounter: 0,
+      // properties for taskObjToAdd
+      id: 0,
+      taskName: "ble ble",
+      taskPriority: 0,
+      estimatedTime: 0,
+      selected: false,
+      // where to add
+      dayIndex: 0,
+      days: [[// day 0
+        //     { // single task
+        //         id: 0,
+        //         taskName: "taskName",
+        //         taskPriority: "3",
+        //         estimatedTime: "4",
+        //         selected: false,
+        //     }
+      ], [], // day 2
+      [], [], [], [], [] // day 6
+      ],
+      depot: [] // id of tasks to move
+
+    };
+    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleT = _this.handleT.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSubmit = _this.handleSubmit.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleChange = _this.handleChange.bind(_assertThisInitialized(_assertThisInitialized(_this))); // this.state?
+
+    _this.handleDelete = _this.handleDelete.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.handleSelected = _this.handleSelected.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.removeSelected = _this.removeSelected.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.saveTaskListToLocalStorage = _this.saveTaskListToLocalStorage.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    _this.clearLocalStorage = _this.clearLocalStorage.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    return _this;
+  }
+
+  _createClass(WeekPlannerApp, [{
+    key: "handleClick",
+    value: function handleClick(event) {
+      //const {name, value} = event.target;
+      event.preventDefault();
+      this.state.openAddFormClicked ? this.setState({
+        openAddFormClicked: false
+      }) : this.setState({
+        openAddFormClicked: true
+      });
+      console.log(this.state.openAddFormClicked);
+    }
+  }, {
+    key: "handleT",
+    value: function handleT(event) {
+      // event.preventDefault();
+      if (event.keyCode === 84) {
+        console.log("State na żądanie: ", this.state);
+      }
+    }
+  }, {
+    key: "handleChange",
+    value: function handleChange(event) {
+      this.setState(_defineProperty({}, event.target.name, event.target.value));
+      console.log("change ", event);
+      console.log("state ", this.state);
+    }
+  }, {
+    key: "removeSelected",
+    // to co niżej
+    // handleDelete = (a) => {
+    //     return (b) => {
+    //
+    //     }
+    // };
+    value: function removeSelected(event) {
+      console.log("removing selected");
+      this.setState(function (prevState) {
+        var newDays = _toConsumableArray(prevState.days);
+
+        newDays = newDays.map(function (day) {
+          var newD = day.filter(function (task) {
+            return task.selected != true;
+          });
+          return newD;
+        });
+        console.log("REM newDays ", newDays);
+        return {
+          days: newDays
+        };
+      });
+    }
+  }, {
+    key: "clearLocalStorage",
+    value: function clearLocalStorage() {
+      localStorage.clear();
+    }
+  }, {
+    key: "saveTaskListToLocalStorage",
+    value: function saveTaskListToLocalStorage() {
+      this.clearLocalStorage();
+      localStorage.setItem("tasks", JSON.stringify(this.state.days));
+      localStorage.setItem("idCounter", JSON.stringify(this.state.idCounter));
+    }
+  }, {
+    key: "render",
+    value: function render() {
+      console.log("-Days-", this.state.days);
+      console.log("-Depot-", this.state.depot); //console.log('Dodano zadanie ', this.state.taskName, this.state.dayIndex);
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+        onKeyDown: this.handleT
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Header_jsx__WEBPACK_IMPORTED_MODULE_3__["default"], {
+        handleClick: this.handleClick,
+        data: this.state
+      }), this.state.openAddFormClicked ? react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_AddForm_jsx__WEBPACK_IMPORTED_MODULE_4__["default"], {
+        days: this.state.days,
+        handleSubmit: this.handleSubmit,
+        handleChange: this.handleChange,
+        id: this.state.id,
+        taskName: this.state.taskName,
+        taskPriority: this.state.taskPriority,
+        dayIndex: this.state.dayIndex,
+        estimatedTime: this.state.estimatedTime
+      }) : react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_PlansSection_jsx__WEBPACK_IMPORTED_MODULE_5__["default"], {
+        days: this.state.days,
+        handleDelete: this.handleDelete,
+        handleSelected: this.handleSelected
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_components_Footer_jsx__WEBPACK_IMPORTED_MODULE_6__["default"], {
+        removeSelected: this.removeSelected,
+        moveForward: this.moveForward,
+        moveBackward: this.moveBackward,
+        moveTask: this.moveTask,
+        save: this.saveTaskListToLocalStorage
+      }));
+    }
+  }]);
+
+  return WeekPlannerApp;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); //--------------components rendering--------------
+
+
+document.addEventListener('DOMContentLoaded', function () {
+  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(WeekPlannerApp, null), document.getElementById('app'));
+});
+
+/***/ }),
+
+/***/ "./src/components/AddForm.jsx":
+/*!************************************!*\
+  !*** ./src/components/AddForm.jsx ***!
+  \************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+var AddForm =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(AddForm, _React$Component);
+
+  function AddForm(props) {
+    _classCallCheck(this, AddForm);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(AddForm).call(this, props)); // this.state = {
+    //     tasks: props.tasks,
+    //     // taskName: "",
+    //     // taskPriority: 0,
+    //     // value: 0,
+    //     // estimatedTime: 0
+    // };
+    // this.taskName={props.taskName};
+    // this.taskPriority={this.state.taskPriority};
+    // this.dayIndex={this.state.dayIndex};
+    // this.estimatedTime={this.state.estimatedTime};
+    //this.handleSubmit = this.handleSubmit.bind(this);
+    //this.handleChange = this.handleChange.bind(this);
+    //this.handleChange = props.handleChange;
+  }
+
+  _createClass(AddForm, [{
+    key: "render",
+    // handleSubmit(event) {
+    //
+    //     //console.log('props ', this.props, "tasks from state ", this.state.tasks);
+    //     //event.preventDefault();
+    //     this.props.handleSubmit(event.target.value);
+    //     event.preventDefault();
+    // };
+    value: function render() {
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("form", {
+        className: "addForm",
+        onSubmit: this.props.handleSubmit
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Task name", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "text",
+        value: this.props.taskName,
+        name: "taskName",
+        placeholder: "Name the task",
+        onChange: this.props.handleChange //onInput={event => event.target.value}
+
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Task priority", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        value: this.props.taskPriority,
+        name: "taskPriority",
+        placeholder: "Task priority",
+        onChange: this.props.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("label", null, "Estimated time", react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "number",
+        value: this.props.estimatedTime,
+        name: "estimatedTime",
+        placeholder: "Estimated time",
+        onChange: this.props.handleChange
+      })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("select", {
+        value: this.props.dayIndex,
+        name: "dayIndex",
+        onChange: this.props.handleChange
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "0",
+        "data-day": "0"
+      }, "Monday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "1",
+        "data-day": "1"
+      }, "Tuesday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "2",
+        "data-day": "2"
+      }, "Wednesday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "3",
+        "data-day": "3"
+      }, "Thursday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "4",
+        "data-day": "4"
+      }, "Friday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "5",
+        "data-day": "5"
+      }, "Saturday"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("option", {
+        value: "6",
+        "data-day": "6"
+      }, "Sunday")), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("input", {
+        type: "submit",
+        value: "Submit"
+      }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, this.props.taskName, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("br", null), "priority ", this.props.taskPriority, ", day ", this.props.value, ", estimated ", this.props.estimatedTime, " houres"));
+    }
+  }]);
+
+  return AddForm;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (AddForm);
+
+/***/ }),
+
+/***/ "./src/components/Day.jsx":
+/*!********************************!*\
+  !*** ./src/components/Day.jsx ***!
+  \********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _Task_jsx__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Task.jsx */ "./src/components/Task.jsx");
+/* harmony import */ var _PlansSection_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./PlansSection.jsx */ "./src/components/PlansSection.jsx");
+function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+function _possibleConstructorReturn(self, call) { if (call && (_typeof(call) === "object" || typeof call === "function")) { return call; } return _assertThisInitialized(self); }
+
+function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
+
+function _getPrototypeOf(o) { _getPrototypeOf = Object.setPrototypeOf ? Object.getPrototypeOf : function _getPrototypeOf(o) { return o.__proto__ || Object.getPrototypeOf(o); }; return _getPrototypeOf(o); }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function"); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, writable: true, configurable: true } }); if (superClass) _setPrototypeOf(subClass, superClass); }
+
+function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || function _setPrototypeOf(o, p) { o.__proto__ = p; return o; }; return _setPrototypeOf(o, p); }
+
+
+
+
+
+var Day =
+/*#__PURE__*/
+function (_React$Component) {
+  _inherits(Day, _React$Component);
+
+  function Day(props) {
+    _classCallCheck(this, Day);
+
+    return _possibleConstructorReturn(this, _getPrototypeOf(Day).call(this, props)); // this.state = {
+    // };
+  }
+
+  _createClass(Day, [{
+    key: "render",
+    value: function render() {
+      var _this = this;
+
+      console.log("Props ", this.props); // console.log("Tasks ", this.state.tasks);
+      // console.log("state.tasks ", this.state.monday);
+
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("ul", {
+        className: "day"
+      }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, this.props.day), this.props.tasks.sort(function (a, b) {
+        return b.taskPriority - a.taskPriority;
+      }).map(function (item, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Task_jsx__WEBPACK_IMPORTED_MODULE_1__["default"], {
+          key: index,
+          id: item.id,
+          taskName: item.taskName,
+          taskPriority: item.taskPriority,
+          estimatedTime: item.estimatedTime,
+          selected: item.selected,
+          handleDelete: _this.props.handleDelete(_this.props.dataDay),
+          handleSelected: _this.props.handleSelected(_this.props.dataDay)
+        });
+      }));
+    }
+  }]);
+
+  return Day;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (Day);
+
+/***/ }),
+
+/***/ "./src/components/Footer.jsx":
+/*!***********************************!*\
+  !*** ./src/components/Footer.jsx ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var RemoveFinishedTasksButton = function RemoveFinishedTasksButton(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "removeFinishedTasksButton",
+    className: "btn",
+    onClick: props.removeSelected
+  }, "Remove selected");
+};
+
+var MoveForward = function MoveForward(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "moveToAnotherDay",
+    className: "btn",
+    onClick: props.moveForward
+  }, "Move Forward");
+};
+
+var MoveBackward = function MoveBackward(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "moveToDayBefore",
+    className: "btn",
+    onClick: props.moveBackward
+  }, "Move Backward");
+};
+
+var Save = function Save(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    id: "save",
+    className: "btn",
+    onClick: props.save
+  }, "Save");
+};
+
+var TaskCounter = function TaskCounter() {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("div", {
+    className: "taskCounter"
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", {
+    id: "counter"
+  }, "0"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("span", null, "Tasks:"));
+};
+
+var Footer = function Footer(props) {
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("footer", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", null, "\xA9Copyright 2019"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(RemoveFinishedTasksButton, {
+    removeSelected: props.removeSelected
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MoveBackward, {
+    moveBackward: function moveBackward() {
+      return props.moveTask(true);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(MoveForward, {
+    moveForward: function moveForward() {
+      return props.moveTask(false);
+    }
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Save, {
+    save: props.save
+  }), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(TaskCounter, null));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Footer);
+
+/***/ }),
+
+/***/ "./src/components/Header.jsx":
+/*!***********************************!*\
+  !*** ./src/components/Header.jsx ***!
+  \***********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+
+
+var Header = function Header(props) {
+  console.log(props.data.openAddFormClicked);
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("header", null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, "Week Planner"), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    onClick: props.handleClick,
+    name: "openAddFormClicked",
+    className: "btn"
+  }, "Add Task"));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Header);
+
+/***/ }),
+
+/***/ "./src/components/PlansSection.jsx":
+/*!*****************************************!*\
+  !*** ./src/components/PlansSection.jsx ***!
+  \*****************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var _Day_jsx__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./Day.jsx */ "./src/components/Day.jsx");
+/* harmony import */ var _Task_jsx__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./Task.jsx */ "./src/components/Task.jsx");
 function _typeof(obj) { if (typeof Symbol === "function" && typeof Symbol.iterator === "symbol") { _typeof = function _typeof(obj) { return typeof obj; }; } else { _typeof = function _typeof(obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; }; } return _typeof(obj); }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
@@ -23723,62 +25013,145 @@ function _setPrototypeOf(o, p) { _setPrototypeOf = Object.setPrototypeOf || func
 function _assertThisInitialized(self) { if (self === void 0) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return self; }
 
 
- //import AddForm from "./components/AddForm.jsx";
-//import PlansSection from "./components/PlansSection.jsx";
-// const Header = () => {
-//     //console.log(this.state.openAddFormClicked);
-//
-//     // return (
-//     //     <header>
-//     //         <h1>Week Planner</h1>
-//     //         <button onClick={this.handleClick} name="openAddFormClicked">Add Task</button>
-//     //     </header>
-//     // )
-//     return (<h1>Should be Header</h1>)
-// };
 
-var App =
+
+
+
+var PlansSection =
 /*#__PURE__*/
 function (_React$Component) {
-  _inherits(App, _React$Component);
+  _inherits(PlansSection, _React$Component);
 
-  function App(props) {
+  function PlansSection(props) {
     var _this;
 
-    _classCallCheck(this, App);
+    _classCallCheck(this, PlansSection);
 
-    _this = _possibleConstructorReturn(this, _getPrototypeOf(App).call(this, props));
+    _this = _possibleConstructorReturn(this, _getPrototypeOf(PlansSection).call(this, props));
     _this.state = {
-      openAddFormClicked: false
-    }; // this.addTask = this.addTask.bind(this);
+      screenSize: window.innerWidth // days: this.props.days
 
-    _this.handleClick = _this.handleClick.bind(_assertThisInitialized(_assertThisInitialized(_this)));
+    };
+    _this.handleLoad = _this.handleLoad.bind(_assertThisInitialized(_assertThisInitialized(_this)));
     return _this;
   }
 
-  _createClass(App, [{
-    key: "handleClick",
-    value: function handleClick(event) {
+  _createClass(PlansSection, [{
+    key: "handleLoad",
+    value: function handleLoad(event) {
       var _event$target = event.target,
           name = _event$target.name,
-          value = _event$target.value; //console.log(this.state.openAddFormClicked);
-
+          value = _event$target.value;
       this.setState(_defineProperty({}, name, value));
     }
   }, {
     key: "render",
     value: function render() {
-      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(Header, null), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h4", null, "Footer test"));
+      var _this2 = this;
+
+      var daysOfWeek = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"];
+      console.log("render this.state.days in PlansSection", this.props.days);
+      return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("section", {
+        className: "week",
+        onLoad: this.handleLoad
+      }, daysOfWeek.map(function (day, index) {
+        return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(_Day_jsx__WEBPACK_IMPORTED_MODULE_2__["default"], {
+          key: index,
+          dataDay: index,
+          day: day,
+          tasks: _this2.props.days[index],
+          handleDelete: _this2.props.handleDelete,
+          handleSelected: _this2.props.handleSelected
+        }, day);
+      }));
     }
   }]);
 
-  return App;
-}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component); //--------------components rendering--------------
+  return PlansSection;
+}(react__WEBPACK_IMPORTED_MODULE_0___default.a.Component);
+
+/* harmony default export */ __webpack_exports__["default"] = (PlansSection);
+
+/***/ }),
+
+/***/ "./src/components/Task.jsx":
+/*!*********************************!*\
+  !*** ./src/components/Task.jsx ***!
+  \*********************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react_dom__WEBPACK_IMPORTED_MODULE_1__);
 
 
-document.addEventListener('DOMContentLoaded', function () {
-  react_dom__WEBPACK_IMPORTED_MODULE_1___default.a.render(react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement(App, null), document.getElementById('app'));
-});
+
+var Task = function Task(props) {
+  console.log("Propsy w tasku: ", props);
+  var estimatedTime = props.estimatedTime;
+  console.log("czas::::", estimatedTime);
+  var sectionWeekHeight = 80;
+  var activityHours = 16;
+  var style = {
+    height: sectionWeekHeight / activityHours * parseInt(estimatedTime) + "vh"
+  };
+  return react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("li", {
+    style: style,
+    className: props.selected ? "done" : undefined
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("h1", null, props.taskName), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("p", {
+    className: "descr"
+  }, props.taskPriority), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn selected",
+    onClick: function onClick() {
+      return props.handleSelected(props.id);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-check"
+  })), react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("button", {
+    className: "btn delete",
+    onClick: function onClick() {
+      return props.handleDelete(props.id);
+    }
+  }, react__WEBPACK_IMPORTED_MODULE_0___default.a.createElement("i", {
+    className: "fas fa-times"
+  })));
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (Task); //?
+
+/***/ }),
+
+/***/ "./src/scss/main.scss":
+/*!****************************!*\
+  !*** ./src/scss/main.scss ***!
+  \****************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../node_modules/css-loader/dist/cjs.js!../../node_modules/sass-loader/lib/loader.js!./main.scss */ "./node_modules/css-loader/dist/cjs.js!./node_modules/sass-loader/lib/loader.js!./src/scss/main.scss");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
 
 /***/ })
 
